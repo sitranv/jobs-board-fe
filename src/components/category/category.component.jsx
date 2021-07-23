@@ -12,14 +12,14 @@ const Category = () => {
     <section id="Job-Category">
       <div className="container">
         <h3 className="text-center">What work are you looking for?</h3>
-        <div className="vertical-space-60"> </div>
+        <div className="vertical-space-20"> </div>
         <div className="row">
           {categories}
         </div>
         <div className="vertical-space-40"></div>
         <a href="#" className="Brows-All-Category">ALL POSITIONS</a>
       </div>
-      <div className="vertical-space-85"></div>
+      <div className="vertical-space-30"></div>
     </section>
   )
 }

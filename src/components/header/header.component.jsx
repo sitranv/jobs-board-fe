@@ -9,7 +9,7 @@ const Header = () => {
         <div class="container">
           <div class="row">
             <div class="col">
-              <div class="header_content d-flex flex-row align-items-center justify-content-start">
+              <div class="header_content d-flex flex-row align-items-center justify-content-start mt-1">
                 <div class="logo_container">
                   <a href="index.html">
                     <img src={logo} class="logo-text" alt="" />
