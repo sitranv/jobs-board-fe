@@ -331,6 +331,10 @@ button:focus {
   margin-top: 15px;
   width: 100vw;
   cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  
 }
 
 .background-color-orange {
@@ -361,6 +365,10 @@ button:focus {
   background-color: #edefee
 }
 
+.background-color-common {
+  background-color: #fafafa;
+}
+
 .text-title {
   line-height: 33px;
   font-size: 23px;
@@ -380,15 +388,19 @@ button:focus {
   position: relative;
   padding: 8px;
   width: 100%;
-  height: 100%;
+  height: 250px;
   box-sizing: border-box;
   font-family: Lato, sans-serif!important;
+}
+
+.job-card:hover {
+  box-shadow: 0 2px 100px 0 #e5e6ea;
 }
 
 .job-details {
   display: flex;
   flex-wrap: wrap;
-  height: 100%;
+  height: 180px;
 }
 
 .job-card .job-details .job-text-wrapper {
@@ -421,6 +433,17 @@ button:focus {
   justify-content: flex-end;
 }
 
+.detail-time {
+  font-size: 11px;
+  color: #9b9b9b;
+  display: flex;
+}
+
+.detail-icon-image {
+  width: 167px;
+  height: 167px;
+}
+
 .salary {
   font-size: 1.1em;
 }
@@ -441,6 +464,16 @@ button:focus {
 
 .background-color-white {
   background-color: #fafafa
+}
+
+.background-color-jobs {
+  background-color: white;
+}
+
+.background-color-footer {
+  background-color: #444;
+  color: #fff;
+  font-family: Lato,sans-serif!important;
 }
 
 .font-color-orange {
@@ -711,6 +744,46 @@ button:focus {
 }
 
 .header_container .Post-Jobs:hover a {
+  cursor: pointer;
+  color: #f26522;
+  text-decoration: none;
+  transition: .3s
+}
+
+
+.header_container .Sign-in {
+  width: 122px;
+  height: 44px;
+  border: 1px solid;
+  border-radius: 41px;
+  color: #f26522;
+  text-align: center;
+  transition: .3s;
+  margin-left: 24px;
+  cursor: pointer;
+  display: inline-block;
+  transition: all .5s ease 0s;
+  line-height: 2.6;
+  background-color: #fff
+}
+
+.header_container .Sign-in a {
+  width: 100%;
+  display: block
+}
+
+.header_container .Sign-in:hover {
+  border: 1px solid;
+  transition: all .5s ease 0s;
+  background-color: #fff;
+  box-shadow:0 2px 10px 0 #d5d6da
+}
+
+.header_container .Sign-in a {
+  color: #f26522
+}
+
+.header_container .Sign-in:hover a {
   cursor: pointer;
   color: #f26522;
   text-decoration: none;
@@ -1807,11 +1880,12 @@ html .ui-button.ui-state-disabled:active {
   width: 89%;
   height: auto;
   background-color: #fff;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   margin-bottom: 0;
   padding: 30px;
   margin-bottom: 12px;
-  border-radius: 5px
+  border-radius: 5px;
+  /* display: flex; */
 }
 
 #resent-job-post .detail h6 a {
@@ -2755,22 +2829,23 @@ html .ui-button.ui-state-disabled:active {
 
 #job-Details {
   position: relative;
-  margin-bottom: 1779px
+  /* margin-bottom: 1779px */
+    margin-bottom: 300px
 }
 
 #job-Details .job-Details {
   position: absolute;
-  box-shadow: 0 6px 22px 0 #eaeaea;
+  /* box-shadow: 0 6px 22px 0 #eaeaea; */
   left: 0;
   right: 0;
-  top: -149px;
+  top: -175px;
   border-radius: 5px;
   z-index: 99;
-  padding: 0 !important
+  padding: 0 250px 0 250px
 }
 
 #job-Details .job-Details .Exclusive-Product {
-  padding: 70px 85px 55px 45px
+  padding: 0px 75px 55px 45px
 }
 
 #job-Details .job-Details .Exclusive-Product h3 {
@@ -2786,7 +2861,8 @@ html .ui-button.ui-state-disabled:active {
   font-family: proxima nova rg;
   cursor: pointer;
   font-weight: 700;
-  background-color: #f26522;
+  background: linear-gradient(
+135deg,#a22d3b .32%,#dd4f31 100%)!important;
   color: #fff;
   border: 1px solid;
   border-radius: 30px;
@@ -2795,7 +2871,8 @@ html .ui-button.ui-state-disabled:active {
   text-decoration: none;
   text-align: center;
   line-height: 2.4;
-  margin-top: 0 !important
+  margin-top: 0 !important;
+  text-align: center;
 }
 
 #job-Details .job-Details .Exclusive-Product .Apply-Now:hover {
@@ -2842,7 +2919,9 @@ html .ui-button.ui-state-disabled:active {
 }
 
 #job-Details .job-Details .Job-Description {
-  padding: 50px 124px 80px 45px
+  margin-top: 10px;
+  box-shadow: 0px 0px 11px 0 #eaeaea;
+  padding: 20px
 }
 
 #job-Details .job-Details .Job-Description h4 {
@@ -2865,9 +2944,16 @@ html .ui-button.ui-state-disabled:active {
   margin-bottom: 30px
 }
 
+#job-Details .job-Details .related-job {
+  margin-top: 10px;
+  box-shadow: 0px 0px 11px 0 #eaeaea;
+  padding: 20px;
+}
+
 #comment {
   padding: 70px
 }
+
 
 #comment h4 {
   display: inline-block;
@@ -3800,7 +3886,9 @@ html .ui-button.ui-state-disabled:active {
     width: 171px;
     height: 45px;
     display: inline-block;
-    float: unset;
+    /* float: unset; */
+    text-align: center;
+    align-items: center;
     font-size: 18px;
     font-family: proxima nova rg;
     cursor: pointer;

@@ -1,8 +1,12 @@
-import React, { } from 'react'
+import React, { FC } from 'react'
 
-const Footer = () => {
+interface Props {
+  
+}
+
+const Footer : FC<Props> = () => {
   return (
-    <footer id="footer" className="background-color-white">
+    <footer id="footer" className="background-color-footer">
       <div className="container">
         <div className="vertical-space-100"></div>
         <div className="row">
@@ -42,7 +46,7 @@ const Footer = () => {
             <p>Get latest update and newsletter</p>
             <div className="vertical-space-30"></div>
             <form>
-              <input type="email" className="email " placeholder="Email Address " required="" />
+              <input type="email" className="email " placeholder="Email Address "/>
               <span className="fa fa-envelope email-icone "></span>
               <input type="submit" className="Subscribe" value="Subscribe" />
             </form>

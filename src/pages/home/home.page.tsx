@@ -1,5 +1,6 @@
 import React, { } from 'react';
 import Category from '../../components/category/category.component';
+import FilterJob from '../../components/filter-jobs-17$/filter-jobs.component';
 import Footer from '../../components/footer/footer.component';
 import Header from '../../components/header/header.component';
 import Intro from '../../components/intro/intro.component';
@@ -15,6 +16,7 @@ const HomePage = () => {
           <SearchBox/>
           <Category/>
           <RecentJob/>
+          <FilterJob/>
           <Footer/>
         </>
     );

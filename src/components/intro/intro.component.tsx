@@ -1,10 +1,14 @@
-import React, { } from 'react'
+import React, { FC } from 'react'
+interface Props {
+  
+}
 
-const Intro = () => {
+const Intro : FC<Props> = () => {
+  let IUWallpaper = ''
   return (
     <section id="intro">
       <div className="carousel-item active">
-        <div className="carousel-background"><img src="https://smartdev-sunny-bucket.s3.ap-southeast-1.amazonaws.com/image.png" alt=""/></div>
+        <div className="carousel-background"><img src="/assets/images/iu.jpg" alt=""/></div>
           <div className="carousel-container">
             <div className="carousel-content">
               <h2 className="font-color-white">Find Jobs Now more Easy Way</h2>
