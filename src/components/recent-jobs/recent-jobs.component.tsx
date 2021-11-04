@@ -4,7 +4,7 @@ import CardJob from '../card-job/card-job.component';
 
 import {slick_responsive} from '../../constants/react-slick';
 
-console.log(slick_responsive);
+// console.log(slick_responsive);
 
 const PrevArrow = (props: { className: any; style: any; onClick: any; }) => {
   const { className, style, onClick } = props;
@@ -62,7 +62,7 @@ const RecentJob : FC<Props> = () => {
     <section id="resent-job-post" className="background-color-jobs">
       <div className="vertical-space-30"></div>
       <div className="container text-center w-4/6">
-        <div className="text-left text-title">Recently Added</div>
+        <div className="text-left text-title" style={{marginBottom: '20px'}}>Recently Added</div>
         <Slider {...settings}>
           {jobs}
         </Slider>

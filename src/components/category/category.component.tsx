@@ -1,32 +1,50 @@
-import React, { FC } from 'react';
-import {Link} from "react-router-dom"
+import React, { FC, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-interface Props {
-  
-}
+import {
+  getPanelsRequest,
+  getPanels,
+} from "../../redux/actions/panel/panel.action";
 
-const Category : FC<Props> = () => {
+interface Props {}
 
-  let categories = [];
-  for (let i = 0; i < 6; i++) {
-    categories.push(<div className="lg:grid-cols-1 p-0 flex md:grid-cols-1">
-      <img src="https://s3-us-west-2.amazonaws.com/edizeven-images/bourdain/hp_v2/bartender.png" className="picTitle" alt="" />
-    </div>)
-  }
+const Category: FC<Props> = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getPanels());
+  }, []);
+
+  let categories = useSelector((state: any) => {
+    return state.panels.panels;
+  });
+
   return (
     <section id="Job-Category" className="background-color-white">
-      <div className="container" style={{width: '48%'}}>
+      <div className="container" style={{ width: "48%" }}>
         <h2 className="text-center text-3xl">What work are you looking for?</h2>
         <div className="vertical-space-20"> </div>
-        <div className="grid lg:grid-cols-3 md:grid-cols-1">
-          {categories}
+        <div className="grid b1814:grid-cols-3 b1280:grid-cols-2">
+          {categories && categories.map((element: any, index: Int16Array) => {
+            return (
+              <div className="lg:grid-cols-1 p-0">
+                <img
+                  src={element.image}
+                  className="picTitle"
+                  alt=""
+                />
+              </div>
+            )})}
         </div>
         <div className="vertical-space-40"></div>
-        <Link to={{pathname:'/job-list'}} className="Brows-All-Category">ALL POSITIONS</Link>
+        <Link to={{ pathname: "/job-list" }} className="Brows-All-Category">
+          ALL POSITIONS
+        </Link>
       </div>
       <div className="vertical-space-30"></div>
     </section>
-  )
-}
+  );
+};
 
 export default Category;

@@ -3346,7 +3346,7 @@ html .ui-button.ui-state-disabled:active {
   height: auto;
   background-color: #fff;
   box-shadow: 0 0 10px 4px #f6f6f6;
-  padding: 50px 68px 70px
+  padding: 50px 68px 70px;
 }
 
 #post_job .job-post-box form label {

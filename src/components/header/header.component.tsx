@@ -1,12 +1,13 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { Modal, Button, Input } from 'antd';
 import logo from './images/logo.png'
+
 interface Props {
   
 }
 
 const Header : FC<Props> = () => {
-
+ 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleCancel = () => {
@@ -43,13 +44,13 @@ const Header : FC<Props> = () => {
                       <li><a href="job_detail.html">Job Detail</a></li>
                     </ul>
                   </li> */}
-                    <li><a href="blog_page.html">BLOG</a></li>
+                    {/* <li><a href="blog_page.html">BLOG</a></li> */}
                     <li><a href="/ez-hire">EZ-HIRE</a></li>
-                    <li><a href="about_us.html">ABOUT</a></li>
-                    <li><a href="contact.html">CONTACT</a></li>
+                    {/* <li><a href="about_us.html">ABOUT</a></li> */}
+                    {/* <li><a href="contact.html">CONTACT</a></li> */}
                   </ul>
                   <div className="Post-Jobs">
-                    <a href="post_job.html" className="">
+                    <a href="/post-job" className="">
                       POST JOB
                     </a>
                   </div>

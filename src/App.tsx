@@ -7,6 +7,8 @@ import JobDetailPage from './pages/job-detail/job-detail.page';
 import JobList from './pages/job-list/job-list.page';
 import NotFound from './pages/not-found/not-found.page';
 import EZHire from './pages/ez-hire/ez-hire.page';
+import PostJob from './pages/post-job/post-job.page';
+
 const App: React.FC = () => {
   return (
     <Router>
@@ -17,7 +19,8 @@ const App: React.FC = () => {
             <Route path='/job-list' component={JobList} />
             <Route path='/job-detail' component={JobDetailPage} />
             <Route path='/ez-hire' component={EZHire} />
-            <Route path="*" component={NotFound} />
+            <Route path="/post-job" component={PostJob} />
+            <Route path="*" component={NotFound} /  >
           </Switch>
         </div>
     </Router>
