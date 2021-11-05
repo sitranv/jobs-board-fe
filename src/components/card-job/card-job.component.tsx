@@ -2,23 +2,28 @@ import React, {FC} from 'react'
 import { Link } from 'react-router-dom';
 
 interface Props {
-  
+  jobName: string;
+  restaurantInfo: any,
+  salary: string,
 }
 
-const CardJob : FC<Props> =() => {
+const CardJob : FC<Props> = (props) => {
+
+  const {jobName, restaurantInfo, salary} = props;
+
   return (
     <Link to="/job-detail" style={{textDecoration: 'none'}}>
       <div className="job-card text-left" style={{width: '195px', marginLeft:'3px'}}>
         <div className="job-details">
           <div className="restaurant-image">
-            <img className="icon-image"src="https://d1ic8ral6zeyya.cloudfront.net/public/restaurants%2Fedzn%3A1%3A8%2FCrockett%27s%20Public%20House.jpg" alt=""/>
+            <img className="icon-image"src={restaurantInfo.restaurantLogoUrl} alt=""/>
           </div>
           <div className="job-text-wrapper">
-            <div className="job-name">Prep cook</div>
-            <div className="restaurant">Crockett's Public House (Puyallup)</div>
-            <div className="location">Puyallup, WA</div>
+            <div className="job-name">{jobName}</div>
+            <div className="restaurant">{restaurantInfo.restaurantName}</div>
+            <div className="location">{restaurantInfo.restaurantAddress.city}, {restaurantInfo.restaurantAddress.state}</div>
             <div className="flex-space"></div>
-            <div className="job-comp mt-2">
+            <div className="job-comp mt-4">
               <div className="salary">
                 $17 - $20/hr
               </div>

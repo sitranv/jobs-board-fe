@@ -17,7 +17,7 @@ const Category: FC<Props> = () => {
   }, []);
 
   let categories = useSelector((state: any) => {
-    return state.panels.panels;
+    return state.panelReducer.panels;
   });
 
   return (

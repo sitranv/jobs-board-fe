@@ -7,6 +7,7 @@ export interface GetJobGridRequestAction {
 export const GET_JOBS_GRID_SUCCESS = 'JobGridActionTypes/GET_JOBS_GRID_SUCCESS';
 export interface GetJobGridSuccessAction {
   type : typeof GET_JOBS_GRID_SUCCESS;
+  jobs: any
 }
 
 export const GET_JOBS_GRID = 'JobGridActionTypes/GET_JOBS_GRID';

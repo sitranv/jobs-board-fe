@@ -1,28 +1,36 @@
-import React, { FC, useEffect } from 'react'
-import CardJob from '../card-job/card-job.component';
+import React, { FC, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-interface Props {
-  
-}
+import CardJob from "../card-job/card-job.component";
+import { getJobGrid } from "../../redux/actions/job-grid/job.action";
+interface Props {}
 
-const JobGrid : FC<Props> = () => {
+const JobGrid: FC<Props> = () => {
+  const dispatch = useDispatch();
 
   useEffect(() => {
-  }, [])
-  let jobs = [];
-  for (let i = 0; i < 30; i++) {
-    jobs.push(
-      <div className="mb-3">
-        <CardJob />
-      </div>
-    )
-  }
+    dispatch(getJobGrid());
+  }, []);
+
+  const jobs = useSelector((state: any) => {
+    return state.jobGridReducer.jobs.content;
+  });
 
   return (
     <div className="col-lg-10">
       <div className="detail">
         <div className="grid b1814:grid-cols-6 b1524:grid-cols-5 b1280:grid-cols-4 b1000:grid-cols-3">
-          {jobs}
+          {jobs && jobs.map((job: any, index: number) => {
+              return (
+                <div className="mb-3">
+                  <CardJob
+                    jobName={job.jobRoles[0].readableName}
+                    restaurantInfo={job.restaurantMetadata}
+                    salary="20"
+                  />
+                </div>
+              );
+            })}
         </div>
       </div>
 
@@ -43,7 +51,7 @@ const JobGrid : FC<Props> = () => {
         </ul>
       </div> */}
     </div>
-  )
-}
+  );
+};
 
 export default JobGrid;
