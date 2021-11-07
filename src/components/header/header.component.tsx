@@ -1,18 +1,41 @@
-import React, { FC, useState, useEffect } from 'react';
-import { Modal, Button, Input } from 'antd';
-import logo from './images/logo.png'
+import React, { FC, useState, useEffect } from "react";
+import { Form, Input, Modal } from "antd";
+import { useDispatch, useSelector } from "react-redux";
 
-interface Props {
-  
-}
 
-const Header : FC<Props> = () => {
- 
+import logo from "./images/logo.png";
+import {login} from '../../redux/actions/auth/login/login.action';
+
+interface Props {}
+
+const validateMessages = {
+  required: "${label} is required!",
+  types: {
+    email: "${label} is not a valid email!",
+    number: "${label} is not a valid number!",
+  },
+  number: {
+    range: "${label} must be between ${min} and ${max}",
+  },
+};
+
+const Header: FC<Props> = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
+  const dispatch = useDispatch();
+
   const handleCancel = () => {
-    setIsModalVisible(!isModalVisible)
-  }
+    setIsModalVisible(!isModalVisible);
+  };
+
+  const onFinish = (data: any) => {
+    dispatch(login(data));
+  };
+
+  const onFinishFailed = (errorInfo: any) => {
+    console.log("Failed:", errorInfo);
+  };
+
   return (
     <header className="header">
       <div className="header_container background-header-color">
@@ -27,7 +50,9 @@ const Header : FC<Props> = () => {
                 </div>
                 <nav className="main_nav_contaner ml-auto">
                   <ul className="main_nav">
-                    <li><a href="/#">HOME</a></li>
+                    <li>
+                      <a href="/#">HOME</a>
+                    </li>
                     {/* <li className="dropdown active ">
                     <a className="dropdown-toggle" data-toggle="dropdown" href="#">Home
                       <span className="caret"></span></a>
@@ -45,7 +70,9 @@ const Header : FC<Props> = () => {
                     </ul>
                   </li> */}
                     {/* <li><a href="blog_page.html">BLOG</a></li> */}
-                    <li><a href="/ez-hire">EZ-HIRE</a></li>
+                    <li>
+                      <a href="/ez-hire">EZ-HIRE</a>
+                    </li>
                     {/* <li><a href="about_us.html">ABOUT</a></li> */}
                     {/* <li><a href="contact.html">CONTACT</a></li> */}
                   </ul>
@@ -54,43 +81,72 @@ const Header : FC<Props> = () => {
                       POST JOB
                     </a>
                   </div>
-                  <div className="Sign-in" onClick={() => {
-                    setIsModalVisible(!isModalVisible)
-                  }}>
-                    <a>
-                      SIGN IN
-                    </a>
+                  <div
+                    className="Sign-in"
+                    onClick={() => {
+                      setIsModalVisible(!isModalVisible);
+                    }}
+                  >
+                    <a>SIGN IN</a>
                   </div>
                   <Modal
                     title=""
                     visible={isModalVisible}
-                    onOk={() => { }}
+                    onOk={() => {}}
                     onCancel={handleCancel}
                     footer=""
                     // cancelButtonProps={handleCancel}
                     // style={{float: 'right', marginRight: '100px'}}
-                    >
+                  >
                     <div className="modal-introduce">
                       <h5>Welcome back</h5>
                       <p>Sign in to continue your job hunting process</p>
                     </div>
                     <div className="sigin-form">
-                      <div className="credentials">
-                        <Input placeholder="Email*" bordered={true} />
-                        <Input placeholder="Password*" />
-                      </div>
-                      <div className="btn-signin">
-                        <span>
-                          SIGN IN
-                        </span>
-                      </div>
+                      <Form
+                        validateMessages={validateMessages}
+                        onFinish={onFinish}
+                      >
+                        <div className="credentials">
+                          <Form.Item
+                            name="email"
+                            rules={[{ required: true }, { type: "email" }]}
+                            style={{ marginBottom: "5px" }}
+                          >
+                            <Input placeholder="Email*"/>
+                          </Form.Item>
+                          <Form.Item
+                            name="password"
+                            rules={[{ required: true }]}
+                          >
+                            <Input placeholder="Password*" type="password"/>
+                          </Form.Item>
+                        </div>
+                        <Form.Item>
+                          <button
+                            className="btn-signin"
+                            type="submit"
+                            // htmlType="submit"
+                            style={{
+                              height: "46px",
+                            }}
+                          >
+                            Submit
+                          </button>
+                        </Form.Item>
+                        {/* <button className="btn-signin" type="submit">
+                          <span>SIGN IN</span>
+                        </button> */}
+                      </Form>
                       <div className="register">
                         Don't have an account? <a>Register</a>
                       </div>
                     </div>
                   </Modal>
                   <div className="hamburger menu_mm menu-vertical">
-                    <i className="large material-icons font-color-white menu_mm menu-vertical">menu</i>
+                    <i className="large material-icons font-color-white menu_mm menu-vertical">
+                      menu
+                    </i>
                   </div>
                 </nav>
               </div>
@@ -100,6 +156,6 @@ const Header : FC<Props> = () => {
       </div>
     </header>
   );
-}
+};
 
-export default Header
+export default Header;

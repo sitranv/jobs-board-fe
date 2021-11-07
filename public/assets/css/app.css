@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: space-around;
   height: 100px;
+  margin-bottom: 10px;
 }
 
 .sigin-form .btn-signin {
