@@ -1,10 +1,9 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Slider from "react-slick";
 import CardJob from "../card-job/card-job.component";
 
 import { slick_responsive } from "../../constants/react-slick";
-
-// console.log(slick_responsive);
 
 const PrevArrow = (props: { className: any; style: any; onClick: any }) => {
   const { className, style, onClick } = props;
@@ -59,11 +58,12 @@ const RecentJob: FC<Props> = () => {
       <div className="">
         <CardJob
           jobName={""}
-          restaurantInfo={{
+          companyInfo={{
             restaurantAddress: {
             }
           }}
           salary={""}
+          place=""
         />
       </div>
     );

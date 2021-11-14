@@ -14,8 +14,9 @@ export function loginRequest(): actions.UserLoginRequestAction {
 }
 
 
-export function loginSuccess(): actions.UserLoginSuccessAction {
+export function loginSuccess(data: object): actions.UserLoginSuccessAction {
   return {
     type: actions.USER_LOGIN_SUCCESS,
+    response: data
   }
 }

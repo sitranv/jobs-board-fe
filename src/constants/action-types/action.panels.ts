@@ -1,12 +1,12 @@
 //get panels
 export const GET_PANELS_REQUEST = 'panelsActionTypes/GET_PANELS_REQUEST';
 export interface GetPanelsRequestAction {
-  type : typeof GET_PANELS_REQUEST;
+  type: typeof GET_PANELS_REQUEST;
 }
 
 export const GET_PANELS_SUCCESS = 'panelsActionTypes/GET_PANELS_SUCCESS';
 export interface GetPanelsSuccessAction {
-  type : typeof GET_PANELS_SUCCESS;
+  type: typeof GET_PANELS_SUCCESS;
   panels: any
 }
 
@@ -15,4 +15,4 @@ export interface GetPanelsAction {
   type: typeof GET_PANELS;
 }
 
-export type PanelsAction = GetPanelsAction |GetPanelsRequestAction | GetPanelsSuccessAction ;
+export type PanelsAction = GetPanelsAction | GetPanelsRequestAction | GetPanelsSuccessAction;

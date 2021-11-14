@@ -3,12 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 
 import CardJob from "../card-job/card-job.component";
 import { getJobGrid } from "../../redux/actions/job-grid/job.action";
+import { beginProgress, completeProgress } from "../../redux/actions/progress/progress.action";
+
 interface Props {}
 
 const JobGrid: FC<Props> = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(beginProgress());
     dispatch(getJobGrid());
   }, []);
 
@@ -20,20 +23,21 @@ const JobGrid: FC<Props> = () => {
     <div className="col-lg-10">
       <div className="detail">
         <div className="grid b1814:grid-cols-6 b1524:grid-cols-5 b1280:grid-cols-4 b1000:grid-cols-3">
-          {jobs && jobs.map((job: any, index: number) => {
+          {jobs &&
+            jobs.map((job: any, index: number) => {
               return (
                 <div className="mb-3">
                   <CardJob
-                    jobName={job.jobRoles[0].readableName}
-                    restaurantInfo={job.restaurantMetadata}
-                    salary="20"
+                    jobName={job.title}
+                    companyInfo={job.companyMetaData}
+                    salary={job.salaryRange}
+                    place={job.place}
                   />
                 </div>
               );
             })}
         </div>
       </div>
-
       <div className="vertical-space-20"></div>
       <div className="vertical-space-25"></div>
       {/* <div className="job-list">

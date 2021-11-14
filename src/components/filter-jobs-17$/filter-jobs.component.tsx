@@ -60,12 +60,13 @@ const FilterJob: FC<Props> = () => {
     jobs.push(
       <CardJob
         jobName={""}
-        restaurantInfo={{
+        companyInfo={{
           restaurantAddress: {
             
           }
         }}
         salary={""}
+        place=""
       />
     );
   }

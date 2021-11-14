@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 100px;
+  /* height: 100px; */
   margin-bottom: 10px;
 }
 
@@ -21,6 +21,12 @@
     text-decoration: none;
     text-align: center;
     font-size: 14px;
+}
+
+.btn-signin:disabled {
+  background: linear-gradient(135deg,#a22d3b .32%,#dd4f31 100%)!important;
+  color: rgba(255,255,255,.26)!important;
+  box-shadow: 0 0 0 0 rgb(0 0 0 / 20%), 0 0 0 0 rgb(0 0 0 / 14%), 0 0 0 0 rgb(0 0 0 / 12%) !important;
 }
 
 .sigin-form .register {

@@ -3,29 +3,35 @@ import { Link } from 'react-router-dom';
 
 interface Props {
   jobName: string;
-  restaurantInfo: any,
+  companyInfo: any,
   salary: string,
+  place: any
 }
 
 const CardJob : FC<Props> = (props) => {
 
-  const {jobName, restaurantInfo, salary} = props;
+  const {jobName, companyInfo, salary, place} = props;
 
   return (
     <Link to="/job-detail" style={{textDecoration: 'none'}}>
       <div className="job-card text-left" style={{width: '195px', marginLeft:'3px'}}>
         <div className="job-details">
           <div className="restaurant-image">
-            <img className="icon-image"src={restaurantInfo.restaurantLogoUrl} alt=""/>
+            <img className="icon-image"src={companyInfo.companyLogo} alt=""/>
           </div>
           <div className="job-text-wrapper">
             <div className="job-name">{jobName}</div>
-            <div className="restaurant">{restaurantInfo.restaurantName}</div>
-            <div className="location">{restaurantInfo.restaurantAddress.city}, {restaurantInfo.restaurantAddress.state}</div>
+            <div className="restaurant">{companyInfo.name}</div>
+            <div className="location">{
+              place && place.map((element:any, index: any) => {
+                if (index < place.length - 1) return element + ", ";
+                else return element;
+              })
+            }</div>
             <div className="flex-space"></div>
-            <div className="job-comp mt-4">
+            <div className="job-comp mt-1">
               <div className="salary">
-                $17 - $20/hr
+                Salary: {salary}
               </div>
               <div className="time">
                 <i className="fa fa-clock" style={{marginTop: '3px', marginRight: '3px'}}></i>

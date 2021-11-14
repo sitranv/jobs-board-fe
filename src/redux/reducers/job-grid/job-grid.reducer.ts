@@ -8,7 +8,9 @@ const initialState : JobGridState = {
   jobs: []
 }
 
+
 export const jobGridReducer = (state: JobGridState = initialState, action: actions.JobGridAction) => {
+
   switch(action.type) {
     case actions.GET_JOBS_GRID:
       return {
