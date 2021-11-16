@@ -32,6 +32,8 @@ const JobGrid: FC<Props> = () => {
                     companyInfo={job.companyMetaData}
                     salary={job.salaryRange}
                     place={job.place}
+                    createdDate={job.createdDate}
+                    jobId={job.id}
                   />
                 </div>
               );

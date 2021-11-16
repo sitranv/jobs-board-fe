@@ -21,5 +21,15 @@ export interface GetProfileFailedAction {
   type: typeof GET_PROFILE_FAILED;
 }
 
+export const CLEAR_PROFILE = 'profileActionTypes/CLEAR_PROFILE'
+export interface ClearProfileAction {
+  type: typeof CLEAR_PROFILE
+}
 
-export type PanelsAction = GetProfileAction | GetProfileSuccessAction | GetProfileRequestAction | GetProfileFailedAction;
+
+export type PanelsAction =
+  GetProfileAction |
+  GetProfileSuccessAction |
+  GetProfileRequestAction |
+  GetProfileFailedAction|
+  ClearProfileAction;

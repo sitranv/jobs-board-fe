@@ -4,6 +4,8 @@ import { jobGridReducer } from './job-grid/job-grid.reducer';
 import { loginReducer } from './auth/login/login.reducer';
 import { progressReducer } from './progress/progress.reducer';
 import { profileReducer } from './profile/profile.reducer';
+import { jobRecentReducer } from './recent-job/recent-job.reducer';
+import { jobDetailReducer } from './job-detail/job-detail.reducer';
 
 const rootReducer = combineReducers({
   panelReducer: panelReducer,
@@ -11,6 +13,8 @@ const rootReducer = combineReducers({
   loginReducer: loginReducer,
   progressReducer: progressReducer,
   profileReducer: profileReducer,
+  jobRecentReducer: jobRecentReducer,
+  jobDetailReducer: jobDetailReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

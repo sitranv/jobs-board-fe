@@ -1,12 +1,12 @@
 //get panels
 export const GET_JOBS_GRID_REQUEST = 'JobGridActionTypes/GET_JOBS_GRID_REQUEST';
 export interface GetJobGridRequestAction {
-  type : typeof GET_JOBS_GRID_REQUEST;
+  type: typeof GET_JOBS_GRID_REQUEST;
 }
 
 export const GET_JOBS_GRID_SUCCESS = 'JobGridActionTypes/GET_JOBS_GRID_SUCCESS';
 export interface GetJobGridSuccessAction {
-  type : typeof GET_JOBS_GRID_SUCCESS;
+  type: typeof GET_JOBS_GRID_SUCCESS;
   jobs: any
 }
 
@@ -15,4 +15,4 @@ export interface GetJobGridAction {
   type: typeof GET_JOBS_GRID;
 }
 
-export type JobGridAction = GetJobGridRequestAction |GetJobGridSuccessAction | GetJobGridAction ;
+export type JobGridAction = GetJobGridRequestAction | GetJobGridSuccessAction | GetJobGridAction;

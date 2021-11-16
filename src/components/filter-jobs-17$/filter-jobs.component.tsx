@@ -62,11 +62,12 @@ const FilterJob: FC<Props> = () => {
         jobName={""}
         companyInfo={{
           restaurantAddress: {
-            
           }
         }}
         salary={""}
         place=""
+        createdDate={"2021-11-12T16:50:27.832Z"}
+        jobId=""
       />
     );
   }

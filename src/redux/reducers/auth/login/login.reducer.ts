@@ -38,6 +38,13 @@ export const loginReducer = (state: LoginState = initialState, action: actions.L
         currentUser: {},
         isLoggedIn: false
       }
+    case actions.USER_LOGOUT:
+      localStorage.removeItem("accessToken");
+      return {
+        ...state,
+        currentUser: {},
+        isLoggedIn: false
+      }
     default:
       return state;
   }

@@ -32,6 +32,12 @@ export const profileReducer = (state: ProfileState = initialState, action: actio
         isLoggedIn: false,
         currentUser: {}
       }
+    case actions.CLEAR_PROFILE:
+      return {
+        ...state,
+        isLoggedIn: false,
+        currentUser: {}
+      }
     default:
       return state;
   }

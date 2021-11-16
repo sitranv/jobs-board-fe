@@ -20,3 +20,9 @@ export function loginSuccess(data: object): actions.UserLoginSuccessAction {
     response: data
   }
 }
+
+export function logout(): actions.UserLogoutAction {
+  return {
+    type: actions.USER_LOGOUT
+  }
+}

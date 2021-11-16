@@ -26,3 +26,9 @@ export function getProfileFailed(): actions.GetProfileFailedAction {
     type: actions.GET_PROFILE_FAILED
   }
 }
+
+export function clearProfile(): actions.ClearProfileAction {
+  return {
+    type: actions.CLEAR_PROFILE
+  }
+}

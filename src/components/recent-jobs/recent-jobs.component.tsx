@@ -4,6 +4,8 @@ import Slider from "react-slick";
 import CardJob from "../card-job/card-job.component";
 
 import { slick_responsive } from "../../constants/react-slick";
+import {getJobRecent} from '../../redux/actions/recent-job/recent-job.action';
+
 
 const PrevArrow = (props: { className: any; style: any; onClick: any }) => {
   const { className, style, onClick } = props;
@@ -52,22 +54,15 @@ const RecentJob: FC<Props> = () => {
     responsive: slick_responsive,
   };
 
-  let jobs = [];
-  for (let i = 0; i < 10; i++) {
-    jobs.push(
-      <div className="">
-        <CardJob
-          jobName={""}
-          companyInfo={{
-            restaurantAddress: {
-            }
-          }}
-          salary={""}
-          place=""
-        />
-      </div>
-    );
-  }
+  const dispatch = useDispatch();
+
+  const jobs = useSelector((state: any) => {
+    return state.jobRecentReducer.jobs;
+  });
+
+  useEffect(() => {
+    dispatch(getJobRecent());
+  }, []);
 
   return (
     <section id="resent-job-post" className="background-color-jobs">
@@ -76,7 +71,23 @@ const RecentJob: FC<Props> = () => {
         <div className="text-left text-title" style={{ marginBottom: "20px" }}>
           Recently Added
         </div>
-        <Slider {...settings}>{jobs}</Slider>
+        <Slider {...settings}>
+          {jobs &&
+            jobs.map((job: any, index: number) => {
+              return (
+                <div className="mb-3">
+                  <CardJob
+                    jobName={job.title}
+                    companyInfo={job.companyMetaData}
+                    salary={job.salaryRange}
+                    place={job.place}
+                    createdDate={job.createdDate}
+                    jobId={job.id}
+                  />
+                </div>
+              );
+            })}
+        </Slider>
       </div>
       <div className="vertical-space-60"></div>
     </section>

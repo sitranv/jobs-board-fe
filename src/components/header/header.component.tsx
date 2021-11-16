@@ -1,12 +1,10 @@
 import React, { FC, useState, useEffect } from "react";
-import { Form, Input, Modal, Select, Radio } from "antd";
+import { Form, Input, Modal, Select, Radio, Dropdown, Menu } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 
 import logo from "./images/logo.png";
 import defaultAvatar from "./images/default-profile-pic.png";
-import { login } from "../../redux/actions/auth/login/login.action";
-import { url } from "inspector";
-const { Option } = Select;
+import { login, logout } from "../../redux/actions/auth/login/login.action";
 
 interface Props {}
 
@@ -32,7 +30,15 @@ const Header: FC<Props> = () => {
     return state.profileReducer.isLoggedIn;
   });
 
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const currentUser = useSelector((state: any) => {
+    return state.profileReducer.currentUser;
+  });
+
+  const [isModalAuthVisible, setIsModalAuthVisible] = useState(false);
+
+  const [isModalUserVisible, setIsModalUserVisible] = useState(false);
+
+  // const []
   const [form, setForm] = useState("LOGIN");
   const [size, setSize] = React.useState("ROLE_USER");
 
@@ -41,7 +47,7 @@ const Header: FC<Props> = () => {
   };
 
   const handleCancel = () => {
-    setIsModalVisible(!isModalVisible);
+    setIsModalAuthVisible(!isModalAuthVisible);
   };
 
   const onFinish = (data: any) => {
@@ -64,6 +70,31 @@ const Header: FC<Props> = () => {
     }
   };
 
+  const menuProfile = (
+    <Menu style={{
+      width: '150px',
+      marginTop: 0
+    }}>
+      <Menu.Item>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.antgroup.com"
+        >
+          Profile
+        </a>
+      </Menu.Item>
+      <Menu.Item
+        onClick={() => {
+          setIsModalAuthVisible(false)
+          dispatch(logout())
+        }}
+      >
+        Logout
+      </Menu.Item>
+    </Menu>
+  );
+
   return (
     <header className="header">
       <div className="header_container background-header-color">
@@ -79,29 +110,6 @@ const Header: FC<Props> = () => {
                 <nav className="main_nav_contaner ml-auto">
                   <ul className="main_nav">
                     <li>
-                      <a href="/#">HOME</a>
-                    </li>
-                    {/* <li className="dropdown active ">
-                    <a className="dropdown-toggle" data-toggle="dropdown" href="#">Home
-                      <span className="caret"></span></a>
-                    <ul className="dropdown-menu">
-                      <li><a href="index.html">Home variation 1</a></li>
-                      <li><a href="index2.html">Home variation 2</a></li>
-                    </ul>
-                  </li>
-                  <li className="dropdown ">
-                    <a className="dropdown-toggle" data-toggle="dropdown" href="#">Job
-                      <span className="caret"></span></a>
-                    <ul className="dropdown-menu">
-                      <li><a href="job_category.html">Job List</a></li>
-                      <li><a href="job_detail.html">Job Detail</a></li>
-                    </ul>
-                  </li> */}
-                    {/* <li><a href="blog_page.html">BLOG</a></li> */}
-                    <li>
-                      <a href="/ez-hire">EZ-HIRE</a>
-                    </li>
-                    <li>
                       <div className="Post-Jobs">
                         <a href="/post-job" className="">
                           POST JOB
@@ -113,40 +121,44 @@ const Header: FC<Props> = () => {
                         <div
                           className="Sign-in"
                           onClick={() => {
-                            setIsModalVisible(!isModalVisible);
+                            setIsModalAuthVisible(!isModalAuthVisible);
                           }}
                         >
                           <a>SIGN IN</a>
                         </div>
                       ) : (
-                        // <div >
-                            <img 
-                             className="profile-button"
-                              src={defaultAvatar}
-                              style={{
-                                position: 'relative'
-                              }}
-                              alt=""
-                            />
-                        // </div>
+                        <Dropdown
+                          overlay={menuProfile}
+                          placement="bottomCenter"
+                          trigger={["click"]}
+                        >
+                          <img
+                            className="profile-button"
+                            src={
+                              isLoggedIn && currentUser.imageUrl
+                                ? currentUser.imageUrl
+                                : defaultAvatar
+                            }
+                            style={{
+                              position: "relative",
+                            }}
+                            alt=""
+                          />
+                        </Dropdown>
                       )}
                     </li>
-                    {/* <li><a href="contact.html">CONTACT</a></li> */}
                   </ul>
-                  {/* <div className="Post-Jobs">
-                    <a href="/post-job" className="">
-                      POST JOB
-                    </a>
-                  </div> */}
-
                   <Modal
                     title=""
-                    visible={isModalVisible}
+                    visible={isModalAuthVisible && !isLoggedIn}
                     onOk={() => {}}
                     onCancel={handleCancel}
                     footer=""
-                    // cancelButtonProps={handleCancel}
-                    // style={{float: 'right', marginRight: '100px'}}
+                    maskClosable={false}
+                    style={{
+                      top: 50,
+                      left: 650,
+                    }}
                   >
                     <div className="modal-introduce">
                       <h5 style={{ fontSize: "20px" }}>
@@ -202,9 +214,6 @@ const Header: FC<Props> = () => {
                               Submit
                             </button>
                           </Form.Item>
-                          {/* <button className="btn-signin" type="submit">
-                          <span>SIGN IN</span>
-                        </button> */}
                         </Form>
                       </div>
                     ) : (
@@ -272,10 +281,6 @@ const Header: FC<Props> = () => {
                               Submit
                             </button>
                           </Form.Item>
-
-                          {/* <button className="btn-signin" type="submit">
-                        <span>SIGN IN</span>
-                      </button> */}
                         </Form>
                       </div>
                     )}

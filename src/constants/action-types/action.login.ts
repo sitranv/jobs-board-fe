@@ -21,5 +21,14 @@ export interface UserLoginFailedAction {
   type: typeof USER_LOGIN_FAILED;
 }
 
+export const USER_LOGOUT = 'LogoutActionType/USER_LOGOUT'
+export interface UserLogoutAction {
+  type: typeof USER_LOGOUT
+}
 
-export type LoginAction = UserLoginRequestAction | UserLoginSuccessAction | UserLoginAction | UserLoginFailedAction;
+export type LoginAction =
+  UserLoginRequestAction |
+  UserLoginSuccessAction |
+  UserLoginAction |
+  UserLoginFailedAction |
+  UserLogoutAction;
