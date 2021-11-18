@@ -1,10 +1,12 @@
 import React, { FC, useState, useEffect } from "react";
-import { Form, Input, Modal, Select, Radio, Dropdown, Menu } from "antd";
+import { Modal, Dropdown, Menu } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 
 import logo from "./images/logo.png";
 import defaultAvatar from "./images/default-profile-pic.png";
 import { login, logout } from "../../redux/actions/auth/login/login.action";
+import Login from '../auth/login/login.component';
+import Register from "../auth/register/register.component";
 
 interface Props {}
 
@@ -40,11 +42,6 @@ const Header: FC<Props> = () => {
 
   // const []
   const [form, setForm] = useState("LOGIN");
-  const [size, setSize] = React.useState("ROLE_USER");
-
-  const handleSizeChange = (e: any) => {
-    setSize(e.target.value);
-  };
 
   const handleCancel = () => {
     setIsModalAuthVisible(!isModalAuthVisible);
@@ -172,117 +169,10 @@ const Header: FC<Props> = () => {
                     </div>
                     {form === "LOGIN" ? (
                       //form login
-                      <div className="sigin-form">
-                        <Form
-                          validateMessages={validateMessages}
-                          onFinish={onFinish}
-                        >
-                          <div className="credentials">
-                            <Form.Item
-                              name="email"
-                              // rules={[{ required: true }, { type: "email" }]}
-                              style={{ marginBottom: "5px" }}
-                              initialValue="user@localhost.com"
-                            >
-                              <Input
-                                placeholder="Email*"
-                                defaultValue="user@localhost.com"
-                              />
-                            </Form.Item>
-                            <Form.Item
-                              name="password"
-                              initialValue="123123123"
-                              // rules={[{ required: true }]}
-                            >
-                              <Input
-                                placeholder="Password*"
-                                type="password"
-                                defaultValue="123123123"
-                              />
-                            </Form.Item>
-                          </div>
-                          <Form.Item>
-                            <button
-                              disabled={checkComplete === 0 ? false : true}
-                              className="btn-signin"
-                              type="submit"
-                              // htmlType="submit"
-                              style={{
-                                height: "46px",
-                              }}
-                            >
-                              Submit
-                            </button>
-                          </Form.Item>
-                        </Form>
-                      </div>
+                      <Login validateMessages={validateMessages}/>
                     ) : (
                       //form register
-                      <div className="sigin-form">
-                        <Form
-                          validateMessages={validateMessages}
-                          // onFinish={onFinish}
-                        >
-                          <div className="credentials">
-                            <Form.Item
-                              name="firstName"
-                              rules={[{ required: true }]}
-                              style={{ marginBottom: "5px" }}
-                            >
-                              <Input placeholder="First Name*" />
-                            </Form.Item>
-                            <Form.Item
-                              name="lastName"
-                              rules={[{ required: true }]}
-                              style={{ marginBottom: "5px" }}
-                            >
-                              <Input placeholder="Last Name*" />
-                            </Form.Item>
-                            <Form.Item
-                              name="email"
-                              rules={[{ required: true }, { type: "email" }]}
-                              style={{ marginBottom: "5px" }}
-                            >
-                              <Input placeholder="Email*" />
-                            </Form.Item>
-                            <Form.Item
-                              name="password"
-                              rules={[{ required: true }]}
-                              style={{ marginBottom: "7px" }}
-                            >
-                              <Input placeholder="Password*" type="password" />
-                            </Form.Item>
-                            <Form.Item>
-                              <Radio.Group
-                                value={size}
-                                onChange={handleSizeChange}
-                              >
-                                <Radio.Button
-                                  value="ROLE_USER"
-                                  style={{ marginRight: "10px" }}
-                                >
-                                  User
-                                </Radio.Button>
-                                <Radio.Button value="ROLE_EMPLOYER">
-                                  Employer
-                                </Radio.Button>
-                              </Radio.Group>
-                            </Form.Item>
-                          </div>
-                          <Form.Item>
-                            <button
-                              className="btn-signin"
-                              type="submit"
-                              // htmlType="submit"
-                              style={{
-                                height: "46px",
-                              }}
-                            >
-                              Submit
-                            </button>
-                          </Form.Item>
-                        </Form>
-                      </div>
+                      <Register validateMessages={validateMessages}/>
                     )}
                     <div className="register">
                       Don't have an account?{" "}

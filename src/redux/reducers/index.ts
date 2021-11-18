@@ -6,6 +6,7 @@ import { progressReducer } from './progress/progress.reducer';
 import { profileReducer } from './profile/profile.reducer';
 import { jobRecentReducer } from './recent-job/recent-job.reducer';
 import { jobDetailReducer } from './job-detail/job-detail.reducer';
+import { registerReducer } from './auth/register/register.reducer';
 
 const rootReducer = combineReducers({
   panelReducer: panelReducer,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   progressReducer: progressReducer,
   profileReducer: profileReducer,
   jobRecentReducer: jobRecentReducer,
-  jobDetailReducer: jobDetailReducer
+  jobDetailReducer: jobDetailReducer,
+  registerReducer: registerReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

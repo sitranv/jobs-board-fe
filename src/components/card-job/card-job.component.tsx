@@ -1,7 +1,7 @@
 import React, {FC} from 'react'
 import { Link } from 'react-router-dom';
 
-import {formatDate} from '../../helpers/format-date';
+import {formatDate} from '../../helpers/helpers';
 interface Props {
   jobName: string;
   companyInfo: any,

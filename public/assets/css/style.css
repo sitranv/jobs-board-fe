@@ -400,7 +400,7 @@ button:focus {
 .job-details {
   display: flex;
   flex-wrap: wrap;
-  height: 180px;
+  /* height: 180px; */
 }
 
 .job-card .job-details .job-text-wrapper {
@@ -628,6 +628,11 @@ button:focus {
   font-size: 14px;
   color: #fff;
   margin-left: 0
+}
+
+.job-information {
+  max-width: 668px;
+  min-width: 100px;
 }
 
 .top_bar_contact_list li {
@@ -1624,6 +1629,12 @@ button.close {
   border: 1px solid #f26522;
   color: #f26522
 } */
+
+.job-detail-title {
+  font-size: 17px;
+  font-weight: bold;
+}
+
 
 #top-Job-Category {
   text-align: center
@@ -2875,7 +2886,7 @@ html .ui-button.ui-state-disabled:active {
 #job-Details {
   position: relative;
   /* margin-bottom: 1779px */
-    margin-bottom: 300px
+    margin-top: 300px
 }
 
 #job-Details .job-Details {
@@ -2886,7 +2897,7 @@ html .ui-button.ui-state-disabled:active {
   top: -175px;
   border-radius: 5px;
   z-index: 99;
-  padding: 0 250px 0 250px
+  padding: 0 130px 0 130px
 }
 
 #job-Details .job-Details .Exclusive-Product {
@@ -2990,7 +3001,7 @@ html .ui-button.ui-state-disabled:active {
 }
 
 #job-Details .job-Details .related-job {
-  margin-top: 10px;
+  /* margin-top: 10px; */
   box-shadow: 0px 0px 11px 0 #eaeaea;
   padding: 20px;
 }
@@ -4957,3 +4968,4 @@ html .ui-button.ui-state-disabled:active {
     margin-bottom: 2440px
   }
 }
+

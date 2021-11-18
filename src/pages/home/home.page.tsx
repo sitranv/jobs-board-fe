@@ -16,7 +16,7 @@ const HomePage = () => {
           <SearchBox/>
           <Category/>
           <RecentJob/>
-          <FilterJob/>
+          {/* <FilterJob/> */}
           <Footer/>
         </>
     );

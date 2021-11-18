@@ -1,4 +1,3 @@
-import { object } from 'yup/lib/locale';
 import * as actions from '../../../../constants/action-types/action.login';
 
 interface LoginState {

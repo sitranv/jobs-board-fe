@@ -7,3 +7,13 @@ export const formatDate = (dateString: string) => {
 
   return day + "/" + month + "/" + year;
 }
+
+export const formatText = (text: string) => {
+  return text.split("\n").map((element) => {
+    return (
+     <p style={{
+       marginBottom: '5px'
+     }}>{element}</p>
+    )
+  });
+}
