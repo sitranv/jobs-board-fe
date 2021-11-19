@@ -3,12 +3,14 @@ import * as actions from '../../../../constants/action-types/action.login';
 interface LoginState {
   currentUser: object;
   userRequest: object;
+  response: object;
   isLoggedIn: boolean
 }
 
 const initialState : LoginState = {
   userRequest: {},
   currentUser: {},
+  response: {},
   isLoggedIn: false
 }
 
@@ -29,6 +31,7 @@ export const loginReducer = (state: LoginState = initialState, action: actions.L
       return {
         ...state,
         currentUser: action.response.user,
+        response: action.response,
         isLoggedIn: true
       }
     case actions.USER_LOGIN_FAILED:

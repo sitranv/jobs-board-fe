@@ -1,6 +1,7 @@
 import React, { FC, useState, useEffect } from "react";
 import { Modal, Dropdown, Menu } from "antd";
 import { useDispatch, useSelector } from "react-redux";
+import { Redirect, Route } from "react-router";
 
 import logo from "./images/logo.png";
 import defaultAvatar from "./images/default-profile-pic.png";
@@ -28,13 +29,13 @@ const Header: FC<Props> = () => {
     return state.progressReducer.progress;
   });
 
-  const isLoggedIn = useSelector((state: any) => {
-    return state.profileReducer.isLoggedIn;
+  const {currentUser, response, isLoggedIn} = useSelector((state: any) => {
+    return state.profileReducer;
   });
 
-  const currentUser = useSelector((state: any) => {
-    return state.profileReducer.currentUser;
-  });
+  // if (!response.isCreatedCompany && !window.location.pathname.includes('/create-company')) {
+  //   window.location.href = '/create-company'
+  // }
 
   const [isModalAuthVisible, setIsModalAuthVisible] = useState(false);
 

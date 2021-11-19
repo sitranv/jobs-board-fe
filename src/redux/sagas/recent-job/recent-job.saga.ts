@@ -11,7 +11,7 @@ function* onLoadJobsRecent() {
     // yield put(actionCreators.getJobGridRequest());
     yield put(progressAction.beginProgress());
     const {data} = yield call(fetchJobsRecent);
-    console.log(data);
+    // console.log(data);
     yield put(actionCreators.getJobRecentSuccess(data))
   } catch(e: any) {
     console.log(e.response.data);

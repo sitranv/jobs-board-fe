@@ -7,7 +7,7 @@ export interface GetProfileRequestAction {
 export const GET_PROFILE_SUCCESS = 'profileActionTypes/GET_PROFILE_SUCCESS';
 export interface GetProfileSuccessAction {
   type: typeof GET_PROFILE_SUCCESS;
-  user: any
+  response: any
 }
 
 export const GET_PROFILE = 'profileActionTypes/GET_PROFILE';
@@ -27,7 +27,7 @@ export interface ClearProfileAction {
 }
 
 
-export type PanelsAction =
+export type ProfileAction =
   GetProfileAction |
   GetProfileSuccessAction |
   GetProfileRequestAction |

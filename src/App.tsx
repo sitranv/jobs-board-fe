@@ -51,6 +51,7 @@ const App: React.FC = () => {
           <Route path="/job-detail/**" component={JobDetailPage} />
           <Route path="/ez-hire" component={EZHire} />
           <Route path="/post-job" component={PostJob} />
+          <Route path="/create-company" component={NotFound} />
           <Route path="*" component={NotFound} />
         </Switch>
       </div>

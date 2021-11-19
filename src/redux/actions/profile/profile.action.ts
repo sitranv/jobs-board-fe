@@ -14,10 +14,10 @@ export function getProfileRequest(): actions.GetProfileRequestAction {
 }
 
 
-export function getProfileSuccess(user: any): actions.GetProfileSuccessAction {
+export function getProfileSuccess(response: any): actions.GetProfileSuccessAction {
   return {
       type: actions.GET_PROFILE_SUCCESS,
-      user
+      response
   }
 }
 

@@ -2,15 +2,17 @@ import * as actions from '../../../constants/action-types/action.profile'
 
 interface ProfileState {
   currentUser: object;
-  isLoggedIn: boolean
+  isLoggedIn: boolean;
+  response: object;
 }
 
 const initialState: ProfileState = {
   currentUser: {},
-  isLoggedIn: false
+  isLoggedIn: false,
+  response: {}
 };
 
-export const profileReducer = (state: ProfileState = initialState, action: actions.PanelsAction) => {
+export const profileReducer = (state: ProfileState = initialState, action: actions.ProfileAction) => {
   switch (action.type) {
     case actions.GET_PROFILE_REQUEST:
       return {
@@ -24,7 +26,8 @@ export const profileReducer = (state: ProfileState = initialState, action: actio
       return {
         ...state,
         isLoggedIn: true,
-        currentUser: action.user
+        currentUser: action.response.user,
+        response: action.response,
       }
     case actions.GET_PROFILE_FAILED:
       return {
