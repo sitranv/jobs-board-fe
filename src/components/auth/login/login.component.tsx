@@ -4,7 +4,6 @@ import { Form, Input } from "antd";
 
 import { login } from "../../../redux/actions/auth/login/login.action";
 
-
 interface Props {
   validateMessages: object;
 }

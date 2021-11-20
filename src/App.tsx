@@ -11,6 +11,8 @@ import JobList from "./pages/job-list/job-list.page";
 import NotFound from "./pages/not-found/not-found.page";
 import EZHire from "./pages/ez-hire/ez-hire.page";
 import PostJob from "./pages/post-job/post-job.page";
+import CreateCompany from "./pages/employer/create-company/create-company.page";
+
 import { resetProgressBar } from "./redux/actions/progress/progress.action";
 import {
   getProfile,
@@ -51,7 +53,7 @@ const App: React.FC = () => {
           <Route path="/job-detail/**" component={JobDetailPage} />
           <Route path="/ez-hire" component={EZHire} />
           <Route path="/post-job" component={PostJob} />
-          <Route path="/create-company" component={NotFound} />
+          <Route path="/create-company" component={CreateCompany} />
           <Route path="*" component={NotFound} />
         </Switch>
       </div>
