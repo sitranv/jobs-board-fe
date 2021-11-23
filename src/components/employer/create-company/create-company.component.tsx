@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Input, Upload, message } from "antd";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
-import { Editor } from "react-draft-wysiwyg";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import CKEditor from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+
+import { createCompany } from "../../../redux/actions/employer/create-company.action";
 
 interface Props {}
 
@@ -19,6 +21,8 @@ const CreateCompanyComponent: FC<Props> = () => {
 
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
+  const [image, setImage] = useState(null);
+  const [description, setDesciption] = useState({});
 
   const uploadButton = (
     <div>
@@ -34,9 +38,28 @@ const CreateCompanyComponent: FC<Props> = () => {
     } else {
       getBase64(e.file.originFileObj, (imageUrl: string) => {
         setImageUrl(imageUrl);
+        setImage(e.file.originFileObj);
         setLoading(false);
       });
     }
+  };
+
+  const onFinish = (data: any) => {
+    // console.log(description);
+    data = {
+      ...data,
+      description: JSON.stringify(data.description),
+    };
+
+    let fd = new FormData();
+    fd.append("companyRequest", JSON.stringify(data));
+    // fd.append('description', JSON.stringify(data.description))
+    // fd.append('name', data.name);
+    if (image !== null) {
+      fd.append("companyLogo", image);
+    }
+    console.log(fd);
+    dispatch(createCompany(fd));
   };
 
   return (
@@ -51,7 +74,7 @@ const CreateCompanyComponent: FC<Props> = () => {
         <span>Your Company Information</span>
       </div>
       <div className="job-post-box mt-5">
-        <Form>
+        <Form onFinish={onFinish}>
           <div className="credentials">
             <Form.Item>
               <Upload
@@ -67,7 +90,7 @@ const CreateCompanyComponent: FC<Props> = () => {
                     alt="avatar"
                     style={{
                       width: "200px",
-                      height: "200px",
+                      height: "198px",
                       objectFit: "cover",
                     }}
                   />
@@ -78,7 +101,7 @@ const CreateCompanyComponent: FC<Props> = () => {
             </Form.Item>
             <div>
               <Form.Item
-                name="companyName"
+                name="name"
                 // initialValue="123123123"
                 // rules={[{ required: true }]}
               >
@@ -86,12 +109,12 @@ const CreateCompanyComponent: FC<Props> = () => {
                   placeholder="Company name"
                   type="text"
                   style={{
-                    height: '45px'
+                    height: "45px",
                   }}
                 />
               </Form.Item>
               <Form.Item
-                name="companyName"
+                name="companyAddress"
                 // initialValue="123123123"
                 // rules={[{ required: true }]}
               >
@@ -99,46 +122,53 @@ const CreateCompanyComponent: FC<Props> = () => {
                   placeholder="Company address"
                   type="text"
                   style={{
-                    height: '45px'
+                    height: "45px",
                   }}
                 />
               </Form.Item>
               <Form.Item
-                style= {{
-                  border: "1px solid #C0C0C0"
+                name="description"
+                style={{
+                  border: "1px solid #C0C0C0",
                 }}
               >
-                <Editor
-                  // editorState={editorState}
-                  toolbarClassName="toolbarClassName"
-                  wrapperClassName="wrapperClassName"
-                  editorClassName="editorClassName"
-                  placeholder="Company Description"
-                  editorStyle={{ 
-                    textIndent: '10px',
-                    height: '200px'
+                <CKEditor
+                  editor={ClassicEditor}
+                  data="<p>Hello from CKEditor 5!</p>"
+                  onInit={(editor: any) => {
+                    // You can store the "editor" and use when it is needed.
+                    console.log("Editor is ready to use!", editor);
                   }}
-                  // onEditorStateChange={this.onEditorStateChange}
+                  onChange={(event: any, editor: any) => {
+                    const data = editor.getData();
+                    console.log({ event, editor, data });
+                  }}
+                  onBlur={(event: any, editor: any) => {
+                    console.log("Blur.", editor);
+                  }}
+                  onFocus={(event: any, editor: any) => {
+                    console.log("Focus.", editor);
+                  }}
                 />
               </Form.Item>
             </div>
 
             <Form.Item
-              style= {{
-                textAlign: 'center'
-              }}
-            >
-            <button
-              // disabled={checkComplete === 0 ? false : true}
-              className="create-company"
-              type="submit"
-              // htmlType="submit"
               style={{
-                height: "46px",
+                textAlign: "center",
               }}
             >
-              Submit
-            </button>
+              <button
+                // disabled={checkComplete === 0 ? false : true}
+                className="create-company"
+                type="submit"
+                // htmlType="submit"
+                style={{
+                  height: "46px",
+                }}
+              >
+                Submit
+              </button>
             </Form.Item>
           </div>
         </Form>

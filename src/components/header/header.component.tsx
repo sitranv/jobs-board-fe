@@ -133,9 +133,10 @@ const Header: FC<Props> = () => {
                           <img
                             className="profile-button"
                             src={
-                              isLoggedIn && currentUser.imageUrl
-                                ? currentUser.imageUrl
-                                : defaultAvatar
+                              // isLoggedIn && currentUser.imageUrl
+                                // ? currentUser.imageUrl
+                                // : defaultAvatar
+                                defaultAvatar
                             }
                             style={{
                               position: "relative",
