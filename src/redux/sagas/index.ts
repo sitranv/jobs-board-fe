@@ -9,6 +9,8 @@ import logoutSaga from './auth/logout/logout.saga';
 import jobDetailSaga from './job-detail/job-detail.saga';
 import registerSaga from './auth/register/register.saga';
 import createCompanySaga from './employer/create-company.saga';
+import applyJobSaga from './user/apply-job.saga';
+import rsSaga from './rs/rs.saga';
 
 export default function* rootSaga() {
   yield all([
@@ -21,5 +23,7 @@ export default function* rootSaga() {
     fork(jobDetailSaga),
     fork(registerSaga),
     fork(createCompanySaga),
+    fork(applyJobSaga),
+    fork(rsSaga),
   ])
 }

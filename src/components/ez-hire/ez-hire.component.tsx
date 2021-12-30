@@ -1,9 +1,63 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { Link } from "react-router-dom";
+import { Upload, Form, Modal, Pagination } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { getRs } from "../../redux/actions/rs/rs.action";
+import { getBase64 } from "../../helpers/helpers";
+import CardJob from './card-job/card-job.component';
 
 interface Props {}
 
+const numberOfCard = 5;
+
 const EZHire: FC<Props> = () => {
+  const dispatch = useDispatch();
+  
+  const [minValue, setMinValue] = useState(0);
+  const [maxValue, setMaxValue] = useState(numberOfCard);
+  const [cv, setCv] = useState(null);
+  const [visible, setVisible] = useState(true);
+
+  const jobs = useSelector((state: any) => {
+    return state.rsReducer.jobs;
+  })
+
+  const uploadCvGetRs = (data: any) => {
+    let fd = new FormData();
+
+    if (cv !== null) {
+      fd.append("cv", cv);
+      setCv(null);
+    } else {
+    }
+    dispatch(getRs(fd));
+  };
+
+  const handleChange = (e: any) => {
+    if (e.file.status !== "uploading") {
+      if (e.file.type !== "application/pdf") {
+      } else {
+        getBase64(e.file.originFileObj, () => {
+          // setCvName(e.file.originFileObj.name)
+          setCv(e.file.originFileObj);
+        });
+      }
+    }
+  };
+
+  const paginationChange = (value: number) => {
+    if (value <= 1) {
+      setMinValue(0);
+      setMaxValue(numberOfCard);
+    } else {
+      setMinValue(maxValue);
+      setMaxValue(value * numberOfCard);
+    }
+  }
+  
+  const handleCancel = () => {
+    setVisible(false);
+  }
   return (
     <section id="Job-Category" className="bg-white">
       <div className="container" style={{ paddingTop: "100px" }}>
@@ -20,25 +74,64 @@ const EZHire: FC<Props> = () => {
             <img src="/assets/images/group_cook.png" alt="" />
           </div>
         </div>
-        <div className="file-card justify-center">
-          <div className="">
-            <img
-              src="/assets/images/cloud-upload-alt-solid.svg"
-              alt=""
-              className="image-upload-file"
-            />
-            <p>Import your resume</p>
+        <Form>
+          <Form.Item>
+            <Upload onChange={handleChange} showUploadList={false}>
+              <div className="file-card justify-center">
+                <img
+                  src="/assets/images/cloud-upload-alt-solid.svg"
+                  alt=""
+                  className="image-upload-file"
+                />
+                <p>Import your resume</p>
+              </div>
+            </Upload>
+            {/* {cvName && <div dangerouslySetInnerHTML={{ __html: cvName }} />} */}
+          </Form.Item>
+
+          <div
+            className="Brows-All-Category btn-submit"
+            style={{
+              fontSize: "24px",
+              marginTop: "20px",
+              height: "52px",
+              lineHeight: "50px",
+            }}
+            onClick={uploadCvGetRs}
+          >
+            <span>SUBMIT</span>
           </div>
-        </div>
-        <div className="Brows-All-Category btn-submit" style={{
-          fontSize: '24px',
-          marginTop: '20px',
-          height: '52px',
-          lineHeight: '50px',
-        }}>
-          <span>SUBMIT</span>
-        </div>
+        </Form>
       </div>
+      <Modal
+        title=""
+        visible={visible && jobs && jobs.length > 0}
+        onOk={() => {}}
+        onCancel={handleCancel}
+        footer=""
+        maskClosable={false}
+        style={{
+          // top: 50,
+          // left: 650,
+        }}
+      >
+        <div style={{}}>
+          {jobs && jobs.slice(minValue, maxValue).map((ele: any, ind: any) => {
+            return (
+              <CardJob
+                job={ele.job}
+              />
+            )
+          })}
+        </div>
+        <Pagination 
+          defaultCurrent={1}
+          defaultPageSize={numberOfCard}
+          onChange={paginationChange}
+          total={jobs.length}
+          simple
+        />
+      </Modal>
       <div className="vertical-space-30"></div>
     </section>
   );

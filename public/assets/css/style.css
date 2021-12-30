@@ -2912,7 +2912,7 @@ html .ui-button.ui-state-disabled:active {
   width: 171px;
   height: 45px;
   display: inline-block;
-  float: right;
+  /* float: right; */
   font-size: 18px;
   font-family: proxima nova rg;
   cursor: pointer;
@@ -2933,7 +2933,7 @@ html .ui-button.ui-state-disabled:active {
 
 #job-Details .job-Details .Exclusive-Product .Apply-Now:hover {
   background-color: #fff;
-  color: #f26522;
+  /* color: #f26522; */
   border: 1px solid #f26522;
   transition: all .5s ease 0s
 }
@@ -2962,7 +2962,8 @@ html .ui-button.ui-state-disabled:active {
   font-family: proxima nova rg;
   font-size: 16px;
   font-weight: 400;
-  line-height: 1.5
+  line-height: 1.5;
+  color: black
 }
 
 #job-Details .job-Details .Exclusive-Product h4 {

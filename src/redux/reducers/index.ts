@@ -8,6 +8,8 @@ import { jobRecentReducer } from './recent-job/recent-job.reducer';
 import { jobDetailReducer } from './job-detail/job-detail.reducer';
 import { registerReducer } from './auth/register/register.reducer';
 import { createCompanyReducer } from './employer/create-company.reducer';
+import { applyJobReducer } from './user/apply-job.reducer';
+import { rsReducer } from './rs/rs.reducer';
 
 const rootReducer = combineReducers({
   panelReducer: panelReducer,
@@ -18,7 +20,9 @@ const rootReducer = combineReducers({
   jobRecentReducer: jobRecentReducer,
   jobDetailReducer: jobDetailReducer,
   registerReducer: registerReducer,
-  createCompanyReducer: createCompanyReducer
+  createCompanyReducer: createCompanyReducer,
+  applyJobReducer: applyJobReducer,
+  rsReducer: rsReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

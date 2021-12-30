@@ -45,20 +45,17 @@ const CreateCompanyComponent: FC<Props> = () => {
   };
 
   const onFinish = (data: any) => {
-    // console.log(description);
     data = {
       ...data,
-      description: JSON.stringify(data.description),
+      description: description,
     };
 
+    console.log(data);
     let fd = new FormData();
     fd.append("companyRequest", JSON.stringify(data));
-    // fd.append('description', JSON.stringify(data.description))
-    // fd.append('name', data.name);
     if (image !== null) {
       fd.append("companyLogo", image);
     }
-    console.log(fd);
     dispatch(createCompany(fd));
   };
 
@@ -70,7 +67,7 @@ const CreateCompanyComponent: FC<Props> = () => {
         width: "60%",
       }}
     >
-      <div className="text-center text-3xl font-bold">
+      <div className="text-center text-3xl font-bold"> 
         <span>Your Company Information</span>
       </div>
       <div className="job-post-box mt-5">
@@ -134,20 +131,18 @@ const CreateCompanyComponent: FC<Props> = () => {
               >
                 <CKEditor
                   editor={ClassicEditor}
-                  data="<p>Hello from CKEditor 5!</p>"
                   onInit={(editor: any) => {
-                    // You can store the "editor" and use when it is needed.
-                    console.log("Editor is ready to use!", editor);
+                    editor.editing.view.change((writer: any) => {
+                      writer.setStyle(
+                        "height",
+                        "250px",
+                        editor.editing.view.document.getRoot()
+                      );
+                    });
                   }}
                   onChange={(event: any, editor: any) => {
                     const data = editor.getData();
-                    console.log({ event, editor, data });
-                  }}
-                  onBlur={(event: any, editor: any) => {
-                    console.log("Blur.", editor);
-                  }}
-                  onFocus={(event: any, editor: any) => {
-                    console.log("Focus.", editor);
+                    setDesciption(data);
                   }}
                 />
               </Form.Item>

@@ -1,15 +1,21 @@
-import { stat } from "fs";
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Upload, Form } from "antd";
+import { Link } from "react-router-dom";
 
 import { getJobDetail } from "../../redux/actions/job-detail/job-detail.action";
 import { formatText } from '../../helpers/helpers';
-import { Link } from "react-router-dom";
+import { applyJob } from '../../redux/actions/user/apply-job.action'
+import { getBase64 } from '../../helpers/helpers';
+
 interface Props {
   jobId: string;
 }
 
 const JobDetail: FC<Props> = (props: any) => {
+  
+  const [cv, setCv] = useState(null);
+  const [cvName, setCvName] = useState("");
   const jobId = props.jobId;
   
   const dispatch = useDispatch();
@@ -22,12 +28,34 @@ const JobDetail: FC<Props> = (props: any) => {
     return state.jobDetailReducer.job;
   });
 
+  const handleChange = (e: any) => {
+    if (e.file.status !== "uploading") {
+      if (e.file.type !== 'application/pdf'){
+        setCvName("PDF is required!")
+      } else {
+        getBase64(e.file.originFileObj, () => {
+          setCvName(e.file.originFileObj.name)
+          setCv(e.file.originFileObj);
+        });
+      }
+    } 
+  }
+
+  const applyJobFinish = (data: any) => {
+    let fd = new FormData();
+    if (cv !== null) {
+      fd.append('userCv', cv);
+      setCv(null);
+    } else {
+      setCvName("<p style='color: red'>Import your PDF CV!</p>")
+    }
+    dispatch(applyJob(fd, jobId));
+  }
+
   return (
     <section id="job-Details">
       <div className="container-fluid background-color-full-white job-Details">
-        <Link to={{
-          pathname: "/job-list"
-        }}>
+        
           <div
             style={{
               color: 'black',
@@ -35,10 +63,11 @@ const JobDetail: FC<Props> = (props: any) => {
               paddingBottom: "30px",
             }}
           >
-            <i className="fas fa-arrow-left" style={{ color: "#A22D3B", marginRight:'2px' }}></i>
+            <Link to={{pathname: "/job-list"}}>
+              <i className="fas fa-arrow-left" style={{ color: "#A22D3B", marginRight:'2px' }}></i>
+            </Link>
             Back to Jobs
           </div>
-        </Link>
         <div className="Exclusive-Product row justify-content-between">
           <div className="col-md-8">
             <div className="job-details">
@@ -97,7 +126,12 @@ const JobDetail: FC<Props> = (props: any) => {
               <div>
                 <h4 className="job-detail-title">Job Description / Responsibility</h4>
                 <div>
-                  {job.description ? formatText(job.description) : ""}
+                  {
+                    job.description && job.description.includes("\n") ? 
+                    formatText(job.description) : 
+                    <div style ={{lineHeight: '5px'}} dangerouslySetInnerHTML={{ __html: job.description}} />
+                  }
+                  {/* {job.description ? formatText(job.description) : ""} */}
                 </div>
               </div>
               
@@ -116,11 +150,30 @@ const JobDetail: FC<Props> = (props: any) => {
             </div>
           </div>
           <div className="col-md-4" style={{ lineHeight: "60px" }}>
-            <div style={{ height: "180px" }}>
-              <a href="#" className="Apply-Now">
-                Apply Now
-              </a>
-            </div>
+            <Form onFinish={applyJobFinish}>
+              <div style={{ height: "180px" }}>
+              <Form.Item>
+                <Upload
+                onChange={handleChange}
+                showUploadList={false}
+                >
+                  <div style={{
+                    // marginLeft: '25px',
+                    color: "#A22D3B"
+                  }}>
+                    <i className="fas fa-paperclip mr-1"> Attach your CV (PDF only)</i>
+                  </div>
+                </Upload>
+                {cvName && <div dangerouslySetInnerHTML={{ __html: cvName}}/>}
+              </Form.Item>
+                <div 
+                  className="Apply-Now"
+                  onClick={applyJobFinish}
+                >
+                  Apply Now
+                </div>
+              </div>
+            </Form>
             <div className="related-job">Related job</div>
             {/* <a href="#">View more similar jobs</a> */}
           </div>
