@@ -13,6 +13,8 @@ export interface GetJobGridSuccessAction {
 export const GET_JOBS_GRID = 'JobGridActionTypes/GET_JOBS_GRID';
 export interface GetJobGridAction {
   type: typeof GET_JOBS_GRID;
+  numOfJobs: number,
+  search: string
 }
 
 export type JobGridAction = GetJobGridRequestAction | GetJobGridSuccessAction | GetJobGridAction;

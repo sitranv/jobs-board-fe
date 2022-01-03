@@ -1,8 +1,8 @@
-import React, {FC} from 'react'
+import React, { FC } from 'react'
 import { Link } from 'react-router-dom';
 
 import { formatDate } from '../../../helpers/helpers';
-
+import './card-job.css';
 interface Props {
   job: any
 }
@@ -14,14 +14,16 @@ const CardJob : FC<Props> = (props) => {
   return (
     <Link 
       to={{
-        // pathname :'/job-detail/' + jobName.toLowerCase().replaceAll(" ", "-") + '/' + jobId,
+        pathname :'/job-detail/' + job.title.toLowerCase().replaceAll(" ", "-") + '/' + job.id,
         // state: {
         //   jobId: jobId
         // }
       }} 
       style={{textDecoration: 'none'}}
     >
-      <div className="job-details">
+      <div className="job-details job-details-card" style={{
+        height: '160px'
+      }}>
         <div className="restaurant-image">
           <img
             className="detail-icon-image"
@@ -33,7 +35,13 @@ const CardJob : FC<Props> = (props) => {
             alt="company-logo"
           />
         </div>
-        <div className="job-information">
+        <div 
+          className="job-information"
+          style={{
+            maxWidth: '500px',
+            overflow: 'hidden'
+          }}
+        >
           <div className="job-name"
             style={{
               fontSize: '20px',

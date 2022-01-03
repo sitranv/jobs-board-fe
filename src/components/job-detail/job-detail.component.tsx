@@ -55,7 +55,6 @@ const JobDetail: FC<Props> = (props: any) => {
   return (
     <section id="job-Details">
       <div className="container-fluid background-color-full-white job-Details">
-        
           <div
             style={{
               color: 'black',

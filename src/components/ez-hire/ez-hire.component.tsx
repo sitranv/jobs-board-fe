@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getRs } from "../../redux/actions/rs/rs.action";
 import { getBase64 } from "../../helpers/helpers";
 import CardJob from './card-job/card-job.component';
+import './ez-hire.css'; // Tell webpack that Button.js uses these styles
 
 interface Props {}
 
@@ -16,6 +17,7 @@ const EZHire: FC<Props> = () => {
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(numberOfCard);
   const [cv, setCv] = useState(null);
+  const [cvName, setCvName] = useState("")
   const [visible, setVisible] = useState(true);
 
   const jobs = useSelector((state: any) => {
@@ -24,7 +26,6 @@ const EZHire: FC<Props> = () => {
 
   const uploadCvGetRs = (data: any) => {
     let fd = new FormData();
-
     if (cv !== null) {
       fd.append("cv", cv);
       setCv(null);
@@ -38,7 +39,7 @@ const EZHire: FC<Props> = () => {
       if (e.file.type !== "application/pdf") {
       } else {
         getBase64(e.file.originFileObj, () => {
-          // setCvName(e.file.originFileObj.name)
+          setCvName(e.file.originFileObj.name)
           setCv(e.file.originFileObj);
         });
       }
@@ -46,13 +47,8 @@ const EZHire: FC<Props> = () => {
   };
 
   const paginationChange = (value: number) => {
-    if (value <= 1) {
-      setMinValue(0);
-      setMaxValue(numberOfCard);
-    } else {
-      setMinValue(maxValue);
+      setMinValue((value - 1) * numberOfCard);
       setMaxValue(value * numberOfCard);
-    }
   }
   
   const handleCancel = () => {
@@ -84,9 +80,9 @@ const EZHire: FC<Props> = () => {
                   className="image-upload-file"
                 />
                 <p>Import your resume</p>
+                {cvName && <div dangerouslySetInnerHTML={{ __html: cvName }} />}
               </div>
             </Upload>
-            {/* {cvName && <div dangerouslySetInnerHTML={{ __html: cvName }} />} */}
           </Form.Item>
 
           <div
@@ -110,10 +106,18 @@ const EZHire: FC<Props> = () => {
         onCancel={handleCancel}
         footer=""
         maskClosable={false}
-        style={{
-          // top: 50,
-          // left: 650,
+        closable={true}
+        bodyStyle={{
+          maxWidth: '700px',
+          overflow: 'hidden',
+          minWidth: '110px',
+          backgroundColor: 'white',
         }}
+        style={{
+          top: 50,
+          left: -50,
+        }}
+        className="custom-modal"
       >
         <div style={{}}>
           {jobs && jobs.slice(minValue, maxValue).map((ele: any, ind: any) => {
@@ -130,6 +134,9 @@ const EZHire: FC<Props> = () => {
           onChange={paginationChange}
           total={jobs.length}
           simple
+          style={{
+            marginTop: '10px'
+          }}
         />
       </Modal>
       <div className="vertical-space-30"></div>

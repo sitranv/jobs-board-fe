@@ -4,6 +4,6 @@ interface jobsResponse {
   jobs: any
 }
 
-export const fetchJobs = async (): Promise<jobsResponse> => {
-  return await axios.get(process.env.REACT_APP_SERVER_URL + 'api/jobs')
+export const fetchJobs = async (numOfJobs: number): Promise<jobsResponse> => {
+  return await axios.get(process.env.REACT_APP_SERVER_URL + `api/jobs/${numOfJobs}/2`)
 }

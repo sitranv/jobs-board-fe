@@ -1,0 +1,8 @@
+.job-details-card:hover {
+  box-shadow: 0 2px 100px 0 #e5e6ea;
+}
+
+.job-details {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

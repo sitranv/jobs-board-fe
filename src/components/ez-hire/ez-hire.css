@@ -1,0 +1,6 @@
+
+.custom-modal .ant-modal-body {
+  width: 800px;
+  transform-origin: 85px 43px;
+  overflow: hidden;
+}
