@@ -51,7 +51,7 @@ const App: React.FC = () => {
           <Route exact path="/" component={HomePage} />
           <Route path="/job-list" component={JobList} />
           <Route path="/job-detail/**" component={JobDetailPage} />
-          <Route path="/ez-hire" component={EZHire} />
+          <Route path="/fast-apply" component={EZHire} />
           <Route path="/post-job" component={PostJob} />
           <Route path="/create-company" component={CreateCompany} />
           <Route path="*" component={NotFound} />

@@ -109,8 +109,8 @@ const Header: FC<Props> = () => {
                   <ul className="main_nav">
                     <li>
                       <div className="Post-Jobs">
-                        <a href="/ez-hire" className="">
-                          EZ-Hire
+                        <a href="/fast-apply" className="">
+                          Fast-Apply
                         </a>
                       </div>
                     </li>

@@ -6,11 +6,11 @@ import * as progressAction from '../../actions/progress/progress.action';
 
 import { fetchJobs } from "../../services/job-grid/job-grid.service";
 
-function* onLoadJobs({numOfJobs}: actionTypes.GetJobGridAction) {
+function* onLoadJobs({numOfJobs, search}: actionTypes.GetJobGridAction) {
   try {
     // yield put(actionCreators.getJobGridRequest());
     yield put(progressAction.beginProgress());
-    const {data} = yield call(fetchJobs, numOfJobs);
+    const {data} = yield call(fetchJobs, numOfJobs, search);
     yield put(actionCreators.getJobGridSuccess(data))
   } catch(e: any) {
     console.log(e.response.data);

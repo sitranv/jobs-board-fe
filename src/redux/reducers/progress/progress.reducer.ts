@@ -1,11 +1,11 @@
 import * as actions from '../../../constants/action-types/action.progress'
 
 interface ProgressState {
-  progress: number
+  progress: number,
 }
 
 const initialState: ProgressState = {
-  progress: 0
+  progress: 0,
 };
 
 export const progressReducer = (state: ProgressState = initialState, action: actions.ProgressAction) => {
@@ -14,17 +14,18 @@ export const progressReducer = (state: ProgressState = initialState, action: act
       let i = Math.floor(Math.random() * 40) + 10
       return {
         ...state,
-        progress: i
+        progress: i,
       };
     case actions.COMPLETE_PROGRESS_BAR:
       return {
         ...state,
-        progress: 100
+        progress: 100,
+        status: true
       }
     case actions.RESET_PROGRESS_BAR:
       return {
         ...state,
-        progress: 0
+        progress: 0,
       }
     default:
       return state;

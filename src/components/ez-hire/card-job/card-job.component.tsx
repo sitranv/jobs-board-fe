@@ -1,65 +1,77 @@
-import React, { FC } from 'react'
-import { Link } from 'react-router-dom';
+import React, { FC } from "react";
+import { Link } from "react-router-dom";
 
-import { formatDate } from '../../../helpers/helpers';
-import './card-job.css';
+import { formatDate } from "../../../helpers/helpers";
+import "./card-job.css";
 interface Props {
-  job: any
+  job: any;
+  mark: any;
 }
 
-const CardJob : FC<Props> = (props) => {
-
-  const {job} = props;
+const CardJob: FC<Props> = (props) => {
+  const { job, mark } = props;
 
   return (
-    <Link 
+    <Link
       to={{
-        pathname :'/job-detail/' + job.title.toLowerCase().replaceAll(" ", "-") + '/' + job.id,
+        pathname:
+          "/job-detail/" +
+          job.title.toLowerCase().replaceAll(" ", "-") +
+          "/" +
+          job.id,
         // state: {
         //   jobId: jobId
         // }
-      }} 
-      style={{textDecoration: 'none'}}
+      }}
+      style={{ textDecoration: "none" }}
     >
-      <div className="job-details job-details-card" style={{
-        height: '160px'
-      }}>
+      <div
+        className="job-details job-details-card"
+        style={{
+          height: "170px",
+          padding: "20px",
+        }}
+      >
         <div className="restaurant-image">
           <img
             className="detail-icon-image"
             src={job.companyMetaData ? job.companyMetaData.companyLogo : ""}
             style={{
-              width: '140px',
-              height: '140px'
+              width: "140px",
+              height: "140px",
             }}
             alt="company-logo"
           />
         </div>
-        <div 
+        <div
           className="job-information"
-          style={{
-            maxWidth: '500px',
-            overflow: 'hidden'
-          }}
+          style={
+            {
+              textAlign: 'left'
+            }
+          }
         >
-          <div className="job-name"
+          <div
+            className="job-name"
             style={{
-              fontSize: '20px',
+              fontSize: "20px",
               marginTop: 0,
             }}
           >
-            {job.title}
+            {<span>{job.title}</span>}
           </div>
-          <div className="restaurant"
+          <div
+            className="restaurant"
             style={{
-              fontSize: '16px',
+              fontSize: "16px",
               fontWeight: 500,
-              margin: 0
+              margin: 0,
             }}
           >
-            {job.companyMetaData ? job.companyMetaData.name : ""}
+            {<span>{job.companyMetaData ? job.companyMetaData.name : ""}</span>}
           </div>
-          <div className="location"
+          <div
+            className="location"
             style={{
               color: "#9b9b9b",
               fontSize: "14px",
@@ -81,12 +93,21 @@ const CardJob : FC<Props> = (props) => {
                 style={{ marginTop: "3px", marginRight: "3px" }}
               ></i>
               <span>posted today</span>
+              <p
+                style={{
+                  color: "#46d369",
+                  marginLeft: "20px",
+                  fontWeight: "bold",
+                }}
+              >
+                {Math.round(10000 * mark) / 100}% Match
+              </p>
             </div>
           </div>
         </div>
       </div>
     </Link>
-  )
-}
+  );
+};
 
 export default CardJob;

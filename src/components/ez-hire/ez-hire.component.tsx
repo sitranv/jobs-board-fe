@@ -1,28 +1,27 @@
 import React, { FC, useState } from "react";
-import { Link } from "react-router-dom";
 import { Upload, Form, Modal, Pagination } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { getRs } from "../../redux/actions/rs/rs.action";
 import { getBase64 } from "../../helpers/helpers";
-import CardJob from './card-job/card-job.component';
-import './ez-hire.css'; // Tell webpack that Button.js uses these styles
+import CardJob from "./card-job/card-job.component";
+// import "./ez-hire.css"; // Tell webpack that Button.js uses these styles
 
 interface Props {}
 
-const numberOfCard = 5;
+const numberOfCard = 10;
 
 const EZHire: FC<Props> = () => {
   const dispatch = useDispatch();
-  
+
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(numberOfCard);
   const [cv, setCv] = useState(null);
-  const [cvName, setCvName] = useState("")
+  const [cvName, setCvName] = useState("");
   const [visible, setVisible] = useState(true);
 
   const jobs = useSelector((state: any) => {
     return state.rsReducer.jobs;
-  })
+  });
 
   const uploadCvGetRs = (data: any) => {
     let fd = new FormData();
@@ -39,7 +38,7 @@ const EZHire: FC<Props> = () => {
       if (e.file.type !== "application/pdf") {
       } else {
         getBase64(e.file.originFileObj, () => {
-          setCvName(e.file.originFileObj.name)
+          setCvName(e.file.originFileObj.name);
           setCv(e.file.originFileObj);
         });
       }
@@ -47,19 +46,19 @@ const EZHire: FC<Props> = () => {
   };
 
   const paginationChange = (value: number) => {
-      setMinValue((value - 1) * numberOfCard);
-      setMaxValue(value * numberOfCard);
-  }
-  
+    setMinValue((value - 1) * numberOfCard);
+    setMaxValue(value * numberOfCard);
+  };
+
   const handleCancel = () => {
     setVisible(false);
-  }
+  };
   return (
     <section id="Job-Category" className="bg-white">
       <div className="container" style={{ paddingTop: "100px" }}>
         <div className="grid lg:grid-cols-2">
           <div className="lg:grid-cols-1 text-content-left">
-            <h2>EZ Hire - Get hired faster.</h2>
+            <h2>Fast Apply - Get hired faster.</h2>
             <div className="text-content">
               <p>Just upload your resume.</p>
               <p>Restaurants managers will call you.</p>
@@ -92,53 +91,24 @@ const EZHire: FC<Props> = () => {
               marginTop: "20px",
               height: "52px",
               lineHeight: "50px",
+              marginBottom: '50px'
             }}
             onClick={uploadCvGetRs}
           >
             <span>SUBMIT</span>
           </div>
         </Form>
-      </div>
-      <Modal
-        title=""
-        visible={visible && jobs && jobs.length > 0}
-        onOk={() => {}}
-        onCancel={handleCancel}
-        footer=""
-        maskClosable={false}
-        closable={true}
-        bodyStyle={{
-          maxWidth: '700px',
-          overflow: 'hidden',
-          minWidth: '110px',
-          backgroundColor: 'white',
-        }}
-        style={{
-          top: 50,
-          left: -50,
-        }}
-        className="custom-modal"
-      >
-        <div style={{}}>
-          {jobs && jobs.slice(minValue, maxValue).map((ele: any, ind: any) => {
-            return (
-              <CardJob
-                job={ele.job}
-              />
-            )
+        <div style={{
+          marginTop: '50px',
+          margin: 'auto',
+          width: '50%'
+        }}>
+        {jobs &&
+          jobs.slice(minValue, maxValue).map((ele: any, ind: any) => {
+            return <CardJob job={ele.job} mark={ele.mark} />;
           })}
-        </div>
-        <Pagination 
-          defaultCurrent={1}
-          defaultPageSize={numberOfCard}
-          onChange={paginationChange}
-          total={jobs.length}
-          simple
-          style={{
-            marginTop: '10px'
-          }}
-        />
-      </Modal>
+      </div>
+      </div>
       <div className="vertical-space-30"></div>
     </section>
   );

@@ -27,7 +27,6 @@ const JobGrid: FC<Props> = () => {
 
   const loadJob = () => {
     setPage(page + 1);
-    console.log(page);
     setTimeout(() => {
       dispatch(beginProgress());
       dispatch(getJobGrid(numOfJobs + 5 * page, search));
@@ -35,7 +34,8 @@ const JobGrid: FC<Props> = () => {
   };
 
   const searchJob = () => {
-
+    dispatch(beginProgress());
+    dispatch(getJobGrid(numOfJobs, search));
   }
 
   return (
@@ -45,7 +45,7 @@ const JobGrid: FC<Props> = () => {
           className="flex border-2 rounded"
           style={{
             width: "100%",
-            border: "1px solid black",
+            border: "1.5px solid black",
           }}
         >
           <input
