@@ -4,12 +4,14 @@ interface ProfileState {
   currentUser: object;
   isLoggedIn: boolean;
   response: object;
+  appliedJobs: object;
 }
 
 const initialState: ProfileState = {
   currentUser: {},
   isLoggedIn: false,
-  response: {}
+  response: {},
+  appliedJobs: {}
 };
 
 export const profileReducer = (state: ProfileState = initialState, action: actions.ProfileAction) => {
@@ -28,6 +30,7 @@ export const profileReducer = (state: ProfileState = initialState, action: actio
         isLoggedIn: true,
         currentUser: action.response.user,
         response: action.response,
+        appliedJobs: action.response.userAppliedJobs
       }
     case actions.GET_PROFILE_FAILED:
       return {
@@ -39,7 +42,16 @@ export const profileReducer = (state: ProfileState = initialState, action: actio
       return {
         ...state,
         isLoggedIn: false,
-        currentUser: {}
+        currentUser: {},
+        appliedJobs: {}
+      }
+    case actions.UPDATE_PROFILE:
+      return {
+        ...state
+      }
+    case actions.UPDATE_PROFILE_SUCCESS:
+      return {
+        ...state,
       }
     default:
       return state;

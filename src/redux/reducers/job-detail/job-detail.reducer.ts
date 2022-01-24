@@ -1,11 +1,13 @@
 import * as actions from '../../../constants/action-types/action.job-detail';
 
 interface JobDetailState {
-  job: object
+  job: object,
+  isApplied: object
 }
 
 const initialState : JobDetailState = {
-  job: {}
+  job: {},
+  isApplied: {}
 }
 
 
@@ -23,7 +25,8 @@ export const jobDetailReducer = (state: JobDetailState = initialState, action: a
     case actions.GET_JOB_DETAIL_SUCCESS:
       return {
         ...state,
-        job: action.job
+        job: action.response.jobDetail,
+        isApplied: action.response.isApplied
       }
     default:
       return state;

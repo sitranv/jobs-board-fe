@@ -14,9 +14,9 @@ export function getJobDetailRequest(): actions.GetJobDetailRequestAction {
 }
 
 
-export function getJobDetailSuccess(job: any): actions.GetJobDetailSuccessAction {
+export function getJobDetailSuccess(response: any): actions.GetJobDetailSuccessAction {
   return {
     type: actions.GET_JOB_DETAIL_SUCCESS,
-    job
+    response
   }
 }

@@ -71,17 +71,17 @@ const EZHire: FC<Props> = () => {
         </div>
         <Form>
           <Form.Item>
-            <Upload onChange={handleChange} showUploadList={false}>
               <div className="file-card justify-center">
+              <Upload onChange={handleChange} showUploadList={false}>
                 <img
                   src="/assets/images/cloud-upload-alt-solid.svg"
                   alt=""
                   className="image-upload-file"
                 />
+              </Upload>
                 <p>Import your resume</p>
                 {cvName && <div dangerouslySetInnerHTML={{ __html: cvName }} />}
               </div>
-            </Upload>
           </Form.Item>
 
           <div

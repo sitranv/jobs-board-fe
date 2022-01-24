@@ -1,5 +1,7 @@
 import * as actions from '../../../constants/action-types/action.profile'
 
+//get profile
+
 export function getProfile(token: string): actions.GetProfileAction {
   return {
     type: actions.GET_PROFILE,
@@ -30,5 +32,23 @@ export function getProfileFailed(): actions.GetProfileFailedAction {
 export function clearProfile(): actions.ClearProfileAction {
   return {
     type: actions.CLEAR_PROFILE
+  }
+}
+
+
+//update profile
+
+export function updateProfile(userRequest: object): actions.UpdateProfileAction {
+  return {
+    type: actions.UPDATE_PROFILE,
+    userRequest
+  }
+}
+
+
+export function updateProfileSuccess(response: any): actions.UpdateProfileSuccessAction {
+  return {
+      type: actions.UPDATE_PROFILE_SUCCESS,
+      response
   }
 }

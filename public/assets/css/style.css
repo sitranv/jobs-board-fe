@@ -2941,7 +2941,7 @@ html .ui-button.ui-state-disabled:active {
 #job-Details .job-Details .Exclusive-Product a {
   float: right;
   display: inline-table;
-  margin-top: -30px;
+  /* margin-top: -30px; */
   color: #f26c4f;
   text-decoration: underline
 }

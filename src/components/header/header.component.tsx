@@ -2,6 +2,7 @@ import React, { FC, useState, useEffect } from "react";
 import { Modal, Dropdown, Menu } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, Route } from "react-router";
+import { Link } from 'react-router-dom';
 
 import logo from "./images/logo.png";
 import defaultAvatar from "./images/default-profile-pic.png";
@@ -74,13 +75,22 @@ const Header: FC<Props> = () => {
       marginTop: 0
     }}>
       <Menu.Item>
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.antgroup.com"
+        <Link
+          to={{
+            pathname: '/user/profile'
+          }}
         >
           Profile
-        </a>
+        </Link>
+      </Menu.Item>
+      <Menu.Item>
+        <Link
+          to={{
+            pathname: '/user/applied-jobs'
+          }}
+        >
+          Applied jobs
+        </Link>
       </Menu.Item>
       <Menu.Item
         onClick={() => {

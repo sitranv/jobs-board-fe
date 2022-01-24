@@ -1,4 +1,4 @@
-//get panels
+//get profile
 export const GET_PROFILE_REQUEST = 'profileActionTypes/GET_PROFILE_REQUEST';
 export interface GetProfileRequestAction {
   type: typeof GET_PROFILE_REQUEST;
@@ -27,9 +27,25 @@ export interface ClearProfileAction {
 }
 
 
+//update profile
+export const UPDATE_PROFILE_SUCCESS = 'profileActionTypes/UPDATE_PROFILE_SUCCESS';
+export interface UpdateProfileSuccessAction {
+  type: typeof UPDATE_PROFILE_SUCCESS;
+  response: any
+}
+
+export const UPDATE_PROFILE = 'profileActionTypes/UPDATE_PROFILE';
+export interface UpdateProfileAction {
+  type: typeof UPDATE_PROFILE;
+  userRequest: object
+}
+
+
 export type ProfileAction =
   GetProfileAction |
   GetProfileSuccessAction |
   GetProfileRequestAction |
   GetProfileFailedAction|
+  UpdateProfileSuccessAction|
+  UpdateProfileAction|
   ClearProfileAction;

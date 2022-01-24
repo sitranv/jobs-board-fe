@@ -15,8 +15,8 @@ function* onLoadJob({jobId}: actionTypes.GetJobDetailAction) {
     console.log(data);
     yield put(actionCreators.getJobDetailSuccess(data))
     let fd = new FormData();
-    fd.append('hashtags', JSON.stringify(data.hashtags));
-    fd.append('jobId', data.id);
+    fd.append('hashtags', JSON.stringify(data.jobDetail.hashtags));
+    fd.append('jobId', data.jobDetail.id);
     yield put(actionCreatorsRelated.getJobRelated(fd))
   } catch(e: any) {
     console.log(e.response.data);

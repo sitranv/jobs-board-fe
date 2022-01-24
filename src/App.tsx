@@ -12,12 +12,11 @@ import NotFound from "./pages/not-found/not-found.page";
 import EZHire from "./pages/ez-hire/ez-hire.page";
 import PostJob from "./pages/post-job/post-job.page";
 import CreateCompany from "./pages/employer/create-company/create-company.page";
+import UserProfilePage from "./pages/profile/profile.page";
+import AppliedJobPage from "./pages/applied-job/applied-job.page";
 
 import { resetProgressBar } from "./redux/actions/progress/progress.action";
-import {
-  getProfile,
-  getProfileFailed,
-} from "./redux/actions/profile/profile.action";
+import { getProfile, getProfileFailed } from "./redux/actions/profile/profile.action";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -50,10 +49,12 @@ const App: React.FC = () => {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/job-list" component={JobList} />
-          <Route path="/job-detail/**" component={JobDetailPage} />
+          <Route path="/job-detail/:name/:id" exact component={JobDetailPage} />
           <Route path="/fast-apply" component={EZHire} />
           <Route path="/post-job" component={PostJob} />
           <Route path="/create-company" component={CreateCompany} />
+          <Route path="/user/profile" component={UserProfilePage} />
+          <Route path="/user/applied-jobs" component={AppliedJobPage} />
           <Route path="*" component={NotFound} />
         </Switch>
       </div>

@@ -5,5 +5,10 @@ interface jobResponse {
 }
 
 export const fetchJobDetail = async (jobId: string): Promise<jobResponse> => {
-  return await axios.get(process.env.REACT_APP_SERVER_URL + 'api/jobs/id/' + jobId)
+  const token = localStorage.getItem('accessToken');
+  return await axios.get(process.env.REACT_APP_SERVER_URL + 'api/jobs/id/' + jobId, {
+    headers: {
+      'authorization': `Bearer ${token}`
+    }
+  })
 }

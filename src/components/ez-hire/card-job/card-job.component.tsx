@@ -30,6 +30,8 @@ const CardJob: FC<Props> = (props) => {
         style={{
           height: "170px",
           padding: "20px",
+          backgroundColor: "#EEEEEE",
+          marginBottom: "10px",
         }}
       >
         <div className="restaurant-image">
@@ -45,11 +47,9 @@ const CardJob: FC<Props> = (props) => {
         </div>
         <div
           className="job-information"
-          style={
-            {
-              textAlign: 'left'
-            }
-          }
+          style={{
+            textAlign: "left",
+          }}
         >
           <div
             className="job-name"

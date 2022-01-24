@@ -7,7 +7,7 @@ export interface GetJobDetailRequestAction {
 export const GET_JOB_DETAIL_SUCCESS = 'JobDetailActionTypes/GET_JOB_DETAIL_SUCCESS';
 export interface GetJobDetailSuccessAction {
   type: typeof GET_JOB_DETAIL_SUCCESS;
-  job: any
+  response: any
 }
 
 export const GET_JOB_DETAIL = 'JobDetailActionTypes/GET_JOB_DETAIL';

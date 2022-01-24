@@ -10,6 +10,7 @@ import { getBase64 } from "../../helpers/helpers";
 import { getJobRelated } from "../../redux/actions/job-detail/related-job.action";
 
 import "./job-detail.css";
+import { retry } from "redux-saga/effects";
 interface Props {
   jobId: string;
 }
@@ -25,17 +26,27 @@ const JobDetail: FC<Props> = (props: any) => {
     dispatch(getJobDetail(jobId));
   }, []);
 
-  const job = useSelector((state: any) => {
-    return state.jobDetailReducer.job;
+  const {job, isApplied} = useSelector((state: any) => {
+    return state.jobDetailReducer;
   });
 
   const jobsRelated = useSelector((state: any) => {
     return state.jobRelatedReducer.jobs;
   });
 
+  // const isApplied = useSelector((state: any) => {
+  //   let appliedJobs = state.profileReducer.appliedJobs;
+  //   if (appliedJobs.length ) {
+  //     return appliedJobs.find((element: any) => {
+  //       return element.jobId === jobId;
+  //     })
+  //   }
+  // });
+
   const { status } = useSelector((state: any) => {
     return state.applyJobReducer;
   });
+
 
   const handleChange = (e: any) => {
     if (e.file.status !== "uploading") {
@@ -180,7 +191,7 @@ const JobDetail: FC<Props> = (props: any) => {
             <Form onFinish={applyJobFinish}>
               <div style={{ height: "180px" }}>
                 <Form.Item>
-                  <div>
+                  <div className="">
                     <Upload onChange={handleChange} showUploadList={false}>
                       <i
                         className="fas fa-paperclip mr-1"
@@ -203,19 +214,58 @@ const JobDetail: FC<Props> = (props: any) => {
                       ></i>
                     )}
                   </div>
+
+                  {/* check isApplied? */}
+                  {isApplied !== null && (
+                    <div className="flex">
+                      <i
+                        className="fas fa-check ml-2"
+                        style={{ color: "#06FF00", fontSize: "15px" }}
+                      >
+                        Applied
+                        <a
+                          href={isApplied.userCv}
+                          target="_blank"
+                          rel="noreferrer"
+                          style={{
+                            marginLeft: "5px",
+                            paddingBottom: "2px",
+                            color: '#1572A1'
+                          }}
+                        >
+                          Your CV
+                        </a>
+                      </i>
+                    </div>
+                  )}
                 </Form.Item>
                 <div className="Apply-Now" onClick={applyJobFinish}>
                   Apply Now
                 </div>
               </div>
             </Form>
-            <div className="related-job mt-3">
+            <div className="related-job mt-3" style={{ height: "1000px" }}>
               <h3 style={{ fontSize: "20px" }}>Related jobs</h3>
               {jobsRelated &&
                 jobsRelated.map((ele: any, ind: number) => {
                   return (
-                    <div>
-                      <hr style={{borderTop: '1px solid'}}/>
+                    <Link
+                      to={{
+                        pathname:
+                          "/job-detail/" +
+                          ele.title.toLowerCase().replaceAll(" ", "-") +
+                          "/" +
+                          ele.id,
+                        // state: {
+                        //   jobId: jobId
+                        // }
+                      }}
+                      style={{
+                        textDecoration: "none",
+                        color: "black",
+                      }}
+                    >
+                      <hr style={{ borderTop: "1px solid black" }} />
                       <div className="job-details">
                         <div className="restaurant-image">
                           <img
@@ -280,19 +330,22 @@ const JobDetail: FC<Props> = (props: any) => {
                             <div className="detail-time">
                               <i
                                 className="fa fa-clock"
-                                style={{ marginTop: "3px", marginRight: "3px" }}
+                                style={{
+                                  marginTop: "3px",
+                                  marginRight: "3px",
+                                }}
                               ></i>
                               <span>posted today</span>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </Link>
                   );
                 })}
             </div>
-            {/* <a href="#">View more similar jobs</a> */}
           </div>
+          {/* <a href="#">View more similar jobs</a> */}
         </div>
       </div>
     </section>

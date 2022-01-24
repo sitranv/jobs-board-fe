@@ -12,6 +12,7 @@ import createCompanySaga from './employer/create-company.saga';
 import applyJobSaga from './user/apply-job.saga';
 import rsSaga from './rs/rs.saga';
 import relatedJobSaga from './job-detail/related-job.saga'
+import appliedJobSaga from './user/applied-job.saga';
 
 export default function* rootSaga() {
   yield all([
@@ -26,6 +27,7 @@ export default function* rootSaga() {
     fork(createCompanySaga),
     fork(applyJobSaga),
     fork(rsSaga),
-    fork(relatedJobSaga)
+    fork(relatedJobSaga),
+    fork(appliedJobSaga)
   ])
 }
