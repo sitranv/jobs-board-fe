@@ -172,8 +172,8 @@ const Header: FC<Props> = () => {
                     footer=""
                     maskClosable={false}
                     style={{
-                      top: 50,
-                      left: 650,
+                      // top: 50,
+                      // left: 650,
                     }}
                   >
                     <div className="modal-introduce">

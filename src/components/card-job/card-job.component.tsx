@@ -18,7 +18,7 @@ const CardJob : FC<Props> = (props) => {
   return (
     <Link 
       to={{
-        pathname :'/job-detail/' + jobName.toLowerCase().replaceAll(" ", "-") + '/' + jobId,
+        pathname :'/job-detail/' + jobName.toLowerCase().replaceAll(" ", "-").replaceAll("/","\\") + '/' + jobId,
         state: {
           jobId: jobId
         }

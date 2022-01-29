@@ -244,8 +244,8 @@ const JobDetail: FC<Props> = (props: any) => {
                 </div>
               </div>
             </Form>
-            <div className="related-job mt-3" style={{ height: "1000px" }}>
-              <h3 style={{ fontSize: "20px" }}>Related jobs</h3>
+            <div className="related-job mt-3">
+              <h4 style={{ fontSize: "20px" }}>Related jobs</h4>
               {jobsRelated &&
                 jobsRelated.map((ele: any, ind: number) => {
                   return (
@@ -265,7 +265,7 @@ const JobDetail: FC<Props> = (props: any) => {
                         color: "black",
                       }}
                     >
-                      <hr style={{ borderTop: "1px solid black" }} />
+                      <hr style={{borderTop: '1px solid black', marginRight: '30px'}}/>
                       <div className="job-details">
                         <div className="restaurant-image">
                           <img
@@ -324,9 +324,7 @@ const JobDetail: FC<Props> = (props: any) => {
                                 else return element;
                               })}
                           </p>
-                          {/* <div className="flex-space"></div> */}
                           <div className="job-comp mt-2">
-                            {/* <div className="salary">{job.salaryRange}</div> */}
                             <div className="detail-time">
                               <i
                                 className="fa fa-clock"

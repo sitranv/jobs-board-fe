@@ -2901,7 +2901,7 @@ html .ui-button.ui-state-disabled:active {
 }
 
 #job-Details .job-Details .Exclusive-Product {
-  padding: 0px 75px 55px 45px
+  /* padding: 0px 75px 55px 45px */
 }
 
 #job-Details .job-Details .Exclusive-Product h3 {
@@ -2939,7 +2939,7 @@ html .ui-button.ui-state-disabled:active {
 }
 
 #job-Details .job-Details .Exclusive-Product a {
-  float: right;
+  /* float: right; */
   display: inline-table;
   /* margin-top: -30px; */
   color: #f26c4f;
@@ -2967,7 +2967,7 @@ html .ui-button.ui-state-disabled:active {
 }
 
 #job-Details .job-Details .Exclusive-Product h4 {
-  margin-top: 30px;
+  margin-top: 20px;
   margin-bottom: 25px
 }
 

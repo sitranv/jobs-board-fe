@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getRs } from "../../redux/actions/rs/rs.action";
 import { getBase64 } from "../../helpers/helpers";
 import CardJob from "./card-job/card-job.component";
+import AppliedJobCard from "../applied-job/applied-job-card/applied-job-card.component";
 // import "./ez-hire.css"; // Tell webpack that Button.js uses these styles
 
 interface Props {}
@@ -71,7 +72,7 @@ const EZHire: FC<Props> = () => {
         </div>
         <Form>
           <Form.Item>
-              <div className="file-card justify-center">
+            <div className="file-card justify-center">
               <Upload onChange={handleChange} showUploadList={false}>
                 <img
                   src="/assets/images/cloud-upload-alt-solid.svg"
@@ -79,9 +80,9 @@ const EZHire: FC<Props> = () => {
                   className="image-upload-file"
                 />
               </Upload>
-                <p>Import your resume</p>
-                {cvName && <div dangerouslySetInnerHTML={{ __html: cvName }} />}
-              </div>
+              <p>Import your resume</p>
+              {cvName && <div dangerouslySetInnerHTML={{ __html: cvName }} />}
+            </div>
           </Form.Item>
 
           <div
@@ -91,23 +92,25 @@ const EZHire: FC<Props> = () => {
               marginTop: "20px",
               height: "52px",
               lineHeight: "50px",
-              marginBottom: '50px'
+              marginBottom: "50px",
             }}
             onClick={uploadCvGetRs}
           >
             <span>SUBMIT</span>
           </div>
         </Form>
-        <div style={{
-          marginTop: '50px',
-          margin: 'auto',
-          width: '50%'
-        }}>
-        {jobs &&
-          jobs.slice(minValue, maxValue).map((ele: any, ind: any) => {
-            return <CardJob job={ele.job} mark={ele.mark} />;
-          })}
-      </div>
+        <div
+          style={{
+            marginTop: "50px",
+            margin: "auto",
+            width: "50%",
+          }}
+        >
+          {jobs &&
+            jobs.slice(minValue, maxValue).map((ele: any, ind: any) => {
+              return <CardJob job={ele.job} mark={ele.mark} />;
+            })}
+        </div>
       </div>
       <div className="vertical-space-30"></div>
     </section>
