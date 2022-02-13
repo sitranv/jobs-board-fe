@@ -48,7 +48,8 @@ const App: React.FC = () => {
       <div className="background-color-common">
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route path="/job-list" component={JobList} />
+          {/* <Route path="/job-list?search=:name" exact component={JobList} /> */}
+          <Route path="/job-list" exact component={JobList} />
           <Route path="/job-detail/:name/:id" exact component={JobDetailPage} />
           <Route path="/fast-apply" component={EZHire} />
           <Route path="/post-job" component={PostJob} />

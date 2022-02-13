@@ -16,7 +16,7 @@ const CardJob: FC<Props> = (props) => {
       to={{
         pathname:
           "/job-detail/" +
-          job.title.toLowerCase().replaceAll(" ", "-").replaceAll("/","\\") +
+          job.title.toLowerCase().replaceAll(" ", "-").replaceAll("/","-") +
           "/" +
           job.id,
         // state: {

@@ -1,10 +1,10 @@
 import React, { FC, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Upload, Form } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useLocation  } from "react-router-dom";
 
 import { getJobDetail } from "../../redux/actions/job-detail/job-detail.action";
-import { formatText } from "../../helpers/helpers";
+import { formatText, formatDate } from "../../helpers/helpers";
 import { applyJob } from "../../redux/actions/user/apply-job.action";
 import { getBase64 } from "../../helpers/helpers";
 import { getJobRelated } from "../../redux/actions/job-detail/related-job.action";
@@ -21,12 +21,12 @@ const JobDetail: FC<Props> = (props: any) => {
   const jobId = props.jobId;
 
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     dispatch(getJobDetail(jobId));
-  }, []);
+  }, [jobId]);
 
-  const {job, isApplied} = useSelector((state: any) => {
+  const { job, isApplied } = useSelector((state: any) => {
     return state.jobDetailReducer;
   });
 
@@ -34,19 +34,14 @@ const JobDetail: FC<Props> = (props: any) => {
     return state.jobRelatedReducer.jobs;
   });
 
-  // const isApplied = useSelector((state: any) => {
-  //   let appliedJobs = state.profileReducer.appliedJobs;
-  //   if (appliedJobs.length ) {
-  //     return appliedJobs.find((element: any) => {
-  //       return element.jobId === jobId;
-  //     })
-  //   }
-  // });
+  const { isLoggedIn } = useSelector((state: any) => {
+    return state.profileReducer;
+  });
+
 
   const { status } = useSelector((state: any) => {
     return state.applyJobReducer;
   });
-
 
   const handleChange = (e: any) => {
     if (e.file.status !== "uploading") {
@@ -63,13 +58,17 @@ const JobDetail: FC<Props> = (props: any) => {
 
   const applyJobFinish = (data: any) => {
     let fd = new FormData();
-    if (cv !== null) {
-      fd.append("userCv", cv);
-      setCv(null);
+    if (!isLoggedIn) {
+      setCvName("<p style='color: red'>You need to login!</p>");
     } else {
-      setCvName("<p style='color: red'>Import your PDF CV!</p>");
+      if (cv !== null) {
+        fd.append("userCv", cv);
+        setCv(null);
+      } else {
+        setCvName("<p style='color: red'>Import your PDF CV!</p>");
+      }
+      dispatch(applyJob(fd, jobId));
     }
-    dispatch(applyJob(fd, jobId));
   };
 
   return (
@@ -150,7 +149,7 @@ const JobDetail: FC<Props> = (props: any) => {
                       className="fa fa-clock"
                       style={{ marginTop: "3px", marginRight: "3px" }}
                     ></i>
-                    <span>posted today</span>
+                    <span>{formatDate(job.createdDate)}</span>
                   </div>
                 </div>
               </div>
@@ -230,7 +229,7 @@ const JobDetail: FC<Props> = (props: any) => {
                           style={{
                             marginLeft: "5px",
                             paddingBottom: "2px",
-                            color: '#1572A1'
+                            color: "#1572A1",
                           }}
                         >
                           Your CV
@@ -253,7 +252,7 @@ const JobDetail: FC<Props> = (props: any) => {
                       to={{
                         pathname:
                           "/job-detail/" +
-                          ele.title.toLowerCase().replaceAll(" ", "-") +
+                          ele.title.toLowerCase().replaceAll(" ", "-").replaceAll("/", "-") +
                           "/" +
                           ele.id,
                         // state: {
@@ -265,7 +264,12 @@ const JobDetail: FC<Props> = (props: any) => {
                         color: "black",
                       }}
                     >
-                      <hr style={{borderTop: '1px solid black', marginRight: '30px'}}/>
+                      <hr
+                        style={{
+                          borderTop: "1px solid black",
+                          marginRight: "30px",
+                        }}
+                      />
                       <div className="job-details">
                         <div className="restaurant-image">
                           <img
@@ -333,7 +337,7 @@ const JobDetail: FC<Props> = (props: any) => {
                                   marginRight: "3px",
                                 }}
                               ></i>
-                              <span>posted today</span>
+                              <span>{formatDate(ele.createdDate)}</span>
                             </div>
                           </div>
                         </div>

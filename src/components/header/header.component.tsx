@@ -124,13 +124,13 @@ const Header: FC<Props> = () => {
                         </a>
                       </div>
                     </li>
-                    <li>
+                    {/* <li>
                       <div className="Post-Jobs">
                         <a href="/post-job" className="">
                           POST JOB
                         </a>
                       </div>
-                    </li>
+                    </li> */}
                     <li>
                       {!isLoggedIn ? (
                         <div

@@ -19,7 +19,7 @@ const JobList = () => {
           <h4 className="text-left">Filter Jobs Result</h4>
           <div className="row">
             <JobFilterBoard />
-            <JobGrid />
+            <JobGrid/>
           </div>
         </div>
         <div className="vertical-space-60"></div>

@@ -67,7 +67,8 @@ const EZHire: FC<Props> = () => {
             </div>
           </div>
           <div className="lg:grid-cols-1">
-            <img src="/assets/images/group_cook.png" alt="" />
+            {/* <img src="/assets/images/group_cook.png" alt="" /> */}
+            <img src="/assets/images/banner.jpg" alt="" style={{width: '80%'}}/>
           </div>
         </div>
         <Form>

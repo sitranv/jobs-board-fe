@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Input, Radio } from "antd";
-
+import { Link } from "react-router-dom";
 import { register } from "../../../redux/actions/auth/register/register.action";
 
 interface Props {
@@ -22,8 +22,7 @@ const Register: FC<Props> = (props) => {
   const { validateMessages } = props;
 
   const onFinish = (data: any) => {
-    console.log(data);
-    dispatch(register(data));
+    dispatch(register({...data, role: 'ROLE_USER'}));
   };
 
   const handleSizeChange = (e: any) => {
@@ -33,8 +32,10 @@ const Register: FC<Props> = (props) => {
   return (
     <>
       <div className="sigin-form">
+       
         {!status && <span className="text-danger" style={{ fontSize: "15px", }}>{error.message}</span> }
         {status && data !== {} && <span className="text-success" style={{ fontSize: "15px", }}>{data.message}</span> }
+       
         <Form
           validateMessages={validateMessages}
           onFinish={onFinish}
@@ -68,7 +69,10 @@ const Register: FC<Props> = (props) => {
             >
               <Input placeholder="Password*" type="password" />
             </Form.Item>
-            <Form.Item
+            <Link to={{
+              pathname: '/employer'
+            }}>Sign up is Employer</Link>
+            {/* <Form.Item
               name="role"
               initialValue={role}
             >
@@ -78,7 +82,7 @@ const Register: FC<Props> = (props) => {
                 </Radio.Button>
                 <Radio.Button value="ROLE_EMPLOYER">Employer</Radio.Button>
               </Radio.Group>
-            </Form.Item>
+            </Form.Item> */}
           </div>
           <Form.Item>
             <button

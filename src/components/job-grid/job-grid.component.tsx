@@ -1,20 +1,23 @@
 import React, { FC, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
-
+import { useLocation } from "react-router-dom";
 import CardJob from "../card-job/card-job.component";
 import { getJobGrid } from "../../redux/actions/job-grid/job.action";
 import { beginProgress, completeProgress } from "../../redux/actions/progress/progress.action";
 
-interface Props {}
+interface Props {
+}
 
-const JobGrid: FC<Props> = () => {
+const JobGrid: FC<Props> = (props: any) => {
   const dispatch = useDispatch();
+
+  const location = useLocation()
+  const state: any = location.state;
 
   const numOfJobs = 20;
   const [page, setPage] = useState(0);
-
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(state && state.search1? state.search1: "");
 
   useEffect(() => {
     dispatch(beginProgress());

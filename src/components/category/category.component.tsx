@@ -25,7 +25,7 @@ const Category: FC<Props> = () => {
       <div className="container" style={{ width: "48%" }}>
         <h2 className="text-center text-3xl">What work are you looking for?</h2>
         <div className="vertical-space-20"> </div>
-        <div className="grid b1814:grid-cols-3 b1280:grid-cols-2">
+        {/* <div className="grid b1814:grid-cols-3 b1280:grid-cols-2">
           {categories && categories.map((element: any, index: Int16Array) => {
             return (
               <div className="lg:grid-cols-1 p-0">
@@ -35,8 +35,8 @@ const Category: FC<Props> = () => {
                   alt=""
                 />
               </div>
-            )})}
-        </div>
+            )})} 
+        </div> */}
         <div className="vertical-space-40"></div>
         <Link to={{ pathname: "/job-list" }} className="Brows-All-Category">
           ALL POSITIONS
