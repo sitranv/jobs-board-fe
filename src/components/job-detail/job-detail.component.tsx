@@ -175,13 +175,27 @@ const JobDetail: FC<Props> = (props: any) => {
               <div>
                 <h4 className="job-detail-title">Experience & Requirement</h4>
                 <p className="margin-bottom">
-                  {job.request ? formatText(job.request) : ""}
+                {job.request && job.request.includes("\n") ? (
+                    formatText(job.request)
+                  ) : (
+                    <div
+                      style={{ lineHeight: "5px" }}
+                      dangerouslySetInnerHTML={{ __html: job.request }}
+                    />
+                  )}
                 </p>
               </div>
               <div>
                 <h4 className="job-detail-title">Benefit</h4>
                 <p className="margin-bottom">
-                  {job.benefit ? formatText(job.benefit) : ""}
+                {job.benefit && job.benefit.includes("\n") ? (
+                    formatText(job.request)
+                  ) : (
+                    <div
+                      style={{ lineHeight: "5px" }}
+                      dangerouslySetInnerHTML={{ __html: job.benefit }}
+                    />
+                  )}
                 </p>
               </div>
             </div>
