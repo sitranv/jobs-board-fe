@@ -10,7 +10,6 @@ import { getBase64 } from "../../helpers/helpers";
 import { getJobRelated } from "../../redux/actions/job-detail/related-job.action";
 
 import "./job-detail.css";
-import { retry } from "redux-saga/effects";
 interface Props {
   jobId: string;
 }
