@@ -22,6 +22,7 @@ const Register: FC<Props> = (props) => {
   const { validateMessages } = props;
 
   const onFinish = (data: any) => {
+    console.log(data);
     dispatch(register({...data, role: 'ROLE_USER'}));
   };
 
