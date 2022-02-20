@@ -27,3 +27,24 @@ export function registerFailed(data: object): actions.UserRegisterFailedAction {
     response: data
   }
 }
+
+export function confirm(token: any): actions.UserConfirmEmailAction {
+  return {
+    type: actions.USER_CONFIRM_EMAIL,
+    token
+  }
+}
+
+export function confirmSuccess(response: any): actions.UserConfirmEmailActionSuccess {
+  return {
+    type: actions.USER_CONFIRM_EMAIL_SUCCESS,
+    response
+  }
+}
+
+export function confirmFailed(response: any): actions.UserConfirmEmailActionFailed {
+  return {
+    type: actions.USER_CONFIRM_EMAIL_FAILED,
+    response
+  }
+}

@@ -5,13 +5,17 @@ interface RegisterState {
   error: any;
   status: boolean;
   data: any;
+  confirmStatus: boolean;
+  confirmResponse: object
 }
 
 const initialState: RegisterState = {
   userRequest: {},
   error: {},
   status: true,
-  data: {}
+  data: {},
+  confirmStatus: false,
+  confirmResponse: {}
 }
 
 export const registerReducer = (state: RegisterState = initialState, action: actions.RegisterAction) => {
@@ -21,7 +25,8 @@ export const registerReducer = (state: RegisterState = initialState, action: act
         ...state,
         userRequest: action.userRequest,
         error: {},
-        status: true
+        status: true,
+        confirmStatus: false
       }
     case actions.USER_REGISTER_REQUEST:
       return {
@@ -31,7 +36,8 @@ export const registerReducer = (state: RegisterState = initialState, action: act
       return {
         ...state,
         data: action.response,
-        status: true
+        status: true,
+        confirmStatus: true
       }
     case actions.USER_REGISTER_FAILED:
       return {
@@ -39,6 +45,21 @@ export const registerReducer = (state: RegisterState = initialState, action: act
         currentUser: {},
         error: action.response,
         status: false
+      }
+    case actions.USER_CONFIRM_EMAIL:
+      return {
+        ...state,
+        confirmStatus: false
+      }
+    case actions.USER_CONFIRM_EMAIL_SUCCESS:
+      return {
+        ...state,
+        confirmResponse: action.response,
+        confirmStatus: true
+      }
+    case actions.USER_CONFIRM_EMAIL_FAILED:
+      return {
+        ...state,
       }
     default:
       return state;
