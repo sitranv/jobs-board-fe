@@ -16,7 +16,7 @@ const JobList = () => {
       <section id="resent-job-post" className="background-color-full-white">
         <div className="vertical-space-100"></div>
         <div className="container-fluid text-center px-5">
-          <h4 className="text-left">Filter Jobs Result</h4>
+          {/* <h4 className="text-left">Filter Jobs Result</h4> */}
           <div className="row">
             <JobFilterBoard />
             <JobGrid/>

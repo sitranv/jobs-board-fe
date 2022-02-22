@@ -54,6 +54,7 @@ const EZHire: FC<Props> = () => {
   const handleCancel = () => {
     setVisible(false);
   };
+  
   return (
     <section id="Job-Category" className="bg-white">
       <div className="container" style={{ paddingTop: "100px" }}>
@@ -62,7 +63,7 @@ const EZHire: FC<Props> = () => {
             <h2>Fast Apply - Get hired faster.</h2>
             <div className="text-content">
               <p>Just upload your resume.</p>
-              <p>Restaurants managers will call you.</p>
+              {/* <p>Restaurants managers will call you.</p> */}
               <p className="font-bold">Because you are that good!</p>
             </div>
           </div>

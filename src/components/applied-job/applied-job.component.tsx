@@ -32,6 +32,7 @@ const AppliedJob: FC<Props> = () => {
           {appliedJobs && appliedJobs.map((ele: any, ind: number) => {
             return <AppliedJobCard appliedJob={ele}/>
           })}
+          {appliedJobs && appliedJobs.length === 0 && <p style={{fontSize: '20px'}}>You have not applied for any job yet</p>}
         </div>
       </div>
      

@@ -144,6 +144,9 @@ const JobDetail: FC<Props> = (props: any) => {
                 <div className="job-comp mt-2">
                   {/* <div className="salary">{job.salaryRange}</div> */}
                   <div className="detail-time">
+                    <span>Due date: <span style={{color: 'red'}}>{formatDate(job.deadline)}</span></span>
+                  </div>
+                  <div className="detail-time">
                     <i
                       className="fa fa-clock"
                       style={{ marginTop: "3px", marginRight: "3px" }}
@@ -195,6 +198,12 @@ const JobDetail: FC<Props> = (props: any) => {
                       dangerouslySetInnerHTML={{ __html: job.benefit }}
                     />
                   )}
+                </p>
+              </div>
+              <div>
+                <h4 className="job-detail-title">Salary Range</h4>
+                <p className="margin-bottom">
+                {job.salaryRange && <p>{job.salaryRange}</p>}
                 </p>
               </div>
             </div>
@@ -265,7 +274,7 @@ const JobDetail: FC<Props> = (props: any) => {
                       to={{
                         pathname:
                           "/job-detail/" +
-                          ele.title.toLowerCase().replaceAll(" ", "-").replaceAll("/", "-") +
+                          ele.title.toLowerCase().replaceAll(" ", "-").replaceAll("/", "-").replaceAll("#", "") +
                           "/" +
                           ele.id,
                         // state: {

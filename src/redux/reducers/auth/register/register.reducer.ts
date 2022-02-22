@@ -49,7 +49,6 @@ export const registerReducer = (state: RegisterState = initialState, action: act
     case actions.USER_CONFIRM_EMAIL:
       return {
         ...state,
-        confirmStatus: false
       }
     case actions.USER_CONFIRM_EMAIL_SUCCESS:
       return {
@@ -60,6 +59,7 @@ export const registerReducer = (state: RegisterState = initialState, action: act
     case actions.USER_CONFIRM_EMAIL_FAILED:
       return {
         ...state,
+        confirmStatus: true
       }
     default:
       return state;
