@@ -141,7 +141,7 @@ const JobDetail: FC<Props> = (props: any) => {
                     })}
                 </div>
                 {/* <div className="flex-space"></div> */}
-                <div className="job-comp mt-2">
+                <div className="job-comp">
                   {/* <div className="salary">{job.salaryRange}</div> */}
                   <div className="detail-time">
                     <span>Due date: <span style={{color: 'red'}}>{formatDate(job.deadline)}</span></span>

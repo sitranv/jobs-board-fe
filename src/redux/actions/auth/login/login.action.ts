@@ -21,6 +21,13 @@ export function loginSuccess(data: object): actions.UserLoginSuccessAction {
   }
 }
 
+export function loginFailed(): actions.UserLoginFailedAction {
+  return {
+    type: actions.USER_LOGIN_FAILED,
+  }
+}
+
+
 export function logout(): actions.UserLogoutAction {
   return {
     type: actions.USER_LOGOUT

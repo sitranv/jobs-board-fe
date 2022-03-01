@@ -12,6 +12,7 @@ import { applyJobReducer } from './user/apply-job.reducer';
 import { rsReducer } from './rs/rs.reducer';
 import { jobRelatedReducer } from './job-detail/related-job.reducer';
 import { appliedJobReducer } from './user/applied-job.reducer';
+import { changePasswordReducer } from './user/change-password.reducer';
 
 const rootReducer = combineReducers({
   panelReducer: panelReducer,
@@ -26,7 +27,8 @@ const rootReducer = combineReducers({
   applyJobReducer: applyJobReducer,
   rsReducer: rsReducer,
   jobRelatedReducer: jobRelatedReducer,
-  appliedJobReducer: appliedJobReducer
+  appliedJobReducer: appliedJobReducer,
+  changePasswordReducer: changePasswordReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

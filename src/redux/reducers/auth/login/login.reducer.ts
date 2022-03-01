@@ -4,14 +4,16 @@ interface LoginState {
   currentUser: object;
   userRequest: object;
   response: object;
-  isLoggedIn: boolean
+  isLoggedIn: boolean;
+  status: boolean
 }
 
 const initialState : LoginState = {
   userRequest: {},
   currentUser: {},
   response: {},
-  isLoggedIn: false
+  isLoggedIn: false,
+  status: true
 }
 
 export const loginReducer = (state: LoginState = initialState, action: actions.LoginAction) => {
@@ -20,7 +22,8 @@ export const loginReducer = (state: LoginState = initialState, action: actions.L
       return {
         ...state,
         userRequest: action.userRequest,
-        isLoggedIn: false
+        isLoggedIn: false,
+        status: true
       }
     case actions.USER_LOGIN_REQUEST:
       return {
@@ -32,13 +35,15 @@ export const loginReducer = (state: LoginState = initialState, action: actions.L
         ...state,
         currentUser: action.response.user,
         response: action.response,
-        isLoggedIn: true
+        isLoggedIn: true,
+        status: true
       }
     case actions.USER_LOGIN_FAILED:
       return {
         ...state,
         currentUser: {},
-        isLoggedIn: false
+        isLoggedIn: false,
+        status: false
       }
     case actions.USER_LOGOUT:
       localStorage.removeItem("accessToken");

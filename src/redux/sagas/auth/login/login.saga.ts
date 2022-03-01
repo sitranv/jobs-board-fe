@@ -17,6 +17,7 @@ function* onLogin({userRequest}: actionTypes.UserLoginAction) {
       yield put(profileAction.getProfileSuccess(data.user))
     }
   } catch (e: any) {
+    yield put(actionCreators.loginFailed())
     console.log(e.response.data);
   } finally {
     yield put(progressAction.completeProgress());

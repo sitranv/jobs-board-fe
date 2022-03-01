@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Form, Input } from "antd";
+import { Form, Input, Alert } from "antd";
 
 import { login } from "../../../redux/actions/auth/login/login.action";
 
@@ -15,6 +15,10 @@ const Login: FC<Props> = (props) => {
     return state.progressReducer.progress;
   });
 
+  const status = useSelector((state: any) => {
+    return state.loginReducer.status;
+  });
+
   const {validateMessages} = props;
 
   const onFinish = (data: any) => {
@@ -26,6 +30,7 @@ const Login: FC<Props> = (props) => {
     <>
       <div className="sigin-form">
         <Form validateMessages={validateMessages} onFinish={onFinish}>
+          {!status &&  <Alert message="Email or password is wrong!" type="error" className="mb-2"/>}
           <div className="credentials">
             <Form.Item
               name="email"

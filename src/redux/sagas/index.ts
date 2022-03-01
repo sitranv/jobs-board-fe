@@ -13,6 +13,7 @@ import applyJobSaga from './user/apply-job.saga';
 import rsSaga from './rs/rs.saga';
 import relatedJobSaga from './job-detail/related-job.saga'
 import appliedJobSaga from './user/applied-job.saga';
+import changePasswordSaga from './user/change-password.saga';
 
 export default function* rootSaga() {
   yield all([
@@ -28,6 +29,7 @@ export default function* rootSaga() {
     fork(applyJobSaga),
     fork(rsSaga),
     fork(relatedJobSaga),
-    fork(appliedJobSaga)
+    fork(appliedJobSaga),
+    fork(changePasswordSaga)
   ])
 }
