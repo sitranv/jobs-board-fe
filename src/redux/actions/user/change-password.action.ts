@@ -7,9 +7,10 @@ export function changePassword(request: any): actions.UserChangePasswordAction {
   }
 }
 
-export function changePassworddFailed(): actions.UserChangePasswordFailedAction {
+export function changePassworddFailed(response: object): actions.UserChangePasswordFailedAction {
   return {
     type: actions.USER_CHANGE_PASSWORD_FAILED,
+    response
   }
 }
 

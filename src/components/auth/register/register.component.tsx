@@ -18,7 +18,7 @@ const Register: FC<Props> = (props) => {
     return state.progressReducer.progress;
   });
 
-  const { status, error, data, confirmStatus } = useSelector(
+  const { status, error, data, confirmStatus, confirmed } = useSelector(
     (state: any) => state.registerReducer
   );
 
@@ -49,9 +49,14 @@ const Register: FC<Props> = (props) => {
             {error.message}
           </span>
         )}
-        {status && data !== {} && (
+        {!confirmed && status && data !== {} && (
           <span className="text-success" style={{ fontSize: "15px" }}>
             {data.message}
+          </span>
+        )}
+        {confirmed && (
+          <span className="text-success" style={{ fontSize: "15px" }}>
+            {"Confirm email successful, please login!" }
           </span>
         )}
         <Form validateMessages={validateMessages} onFinish={onFinish}>

@@ -9,8 +9,11 @@ function* onChangePassword({request}: actionTypes.UserChangePasswordAction) {
   try {
     yield put(progressAction.beginProgress());
     const { data } = yield call(changePassword,request);
-    console.log(data);
-    yield put(actionCreators.changePassword(data))
+    if (data.status) {
+      yield put(actionCreators.changePassworddSuccess(data))
+    } else {
+      yield put(actionCreators.changePassworddFailed(data))
+    }
   } catch (e: any) {
     console.log(e.response.data);
   } finally {

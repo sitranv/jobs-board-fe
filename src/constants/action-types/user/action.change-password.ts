@@ -18,6 +18,7 @@ export interface UserChangePasswordAction {
 export const USER_CHANGE_PASSWORD_FAILED = 'ChangePasswordActionTypes/USER_CHANGE_PASSWORD_FAILED'
 export interface UserChangePasswordFailedAction {
   type: typeof USER_CHANGE_PASSWORD_FAILED;
+  response: any
 }
 
 export type ChangePasswordAction =

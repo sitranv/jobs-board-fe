@@ -37,6 +37,7 @@ const EZHire: FC<Props> = () => {
   const handleChange = (e: any) => {
     if (e.file.status !== "uploading") {
       if (e.file.type !== "application/pdf") {
+        setCvName("PDF is required!");
       } else {
         getBase64(e.file.originFileObj, () => {
           setCvName(e.file.originFileObj.name);

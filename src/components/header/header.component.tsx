@@ -10,7 +10,7 @@ import defaultAvatar from "./images/default-profile-pic.png";
 import { login, logout } from "../../redux/actions/auth/login/login.action";
 import Login from "../auth/login/login.component";
 import Register from "../auth/register/register.component";
-import { changePassword }  from "../../redux/actions/user/change-password.action";
+import { changePassword } from "../../redux/actions/user/change-password.action";
 
 interface Props {}
 
@@ -45,6 +45,10 @@ const Header: FC<Props> = () => {
 
   const { currentUser, response, isLoggedIn } = useSelector((state: any) => {
     return state.profileReducer;
+  });
+
+  const { changed, errorMessage } = useSelector((state: any) => {
+    return state.changePasswordReducer;
   });
 
   // if (!response.isCreatedCompany && !window.location.pathname.includes('/create-company')) {
@@ -132,7 +136,7 @@ const Header: FC<Props> = () => {
 
   const onChangePassword = (data: any) => {
     dispatch(changePassword(data));
-  }
+  };
 
   return (
     <header className="header">
@@ -238,6 +242,23 @@ const Header: FC<Props> = () => {
                   >
                     <div>
                       <h1 style={{ fontSize: "20px" }}>Change password</h1>
+                      {changed && (
+                        <span
+                          className="text-success"
+                          style={{ fontSize: "15px" }}
+                        >
+                          {"Change password successful"}
+                        </span>
+                      )}
+
+                      {!changed && errorMessage !== "" && (
+                        <span
+                          className="text-danger"
+                          style={{ fontSize: "15px" }}
+                        >
+                          {errorMessage}
+                        </span>
+                      )}
                       <Form
                         validateMessages={validateMessagesChangePw}
                         onFinish={onChangePassword}
@@ -245,14 +266,24 @@ const Header: FC<Props> = () => {
                         <div className="credentials">
                           <Form.Item
                             name="oldPassword"
-                            rules={[{ required: true, message: 'Please input your password!' }]}
+                            rules={[
+                              {
+                                required: true,
+                                message: "Please input your password!",
+                              },
+                            ]}
                             style={{ marginBottom: "15px", marginTop: "5px" }}
                           >
-                            <Input placeholder="Old password" type="password"/>
+                            <Input placeholder="Old password" type="password" />
                           </Form.Item>
                           <Form.Item
                             name="newPassword"
-                            rules={[{ required: true, message: 'Please input new password!' }]}
+                            rules={[
+                              {
+                                required: true,
+                                message: "Please input new password!",
+                              },
+                            ]}
                             style={{ marginBottom: "15px" }}
                           >
                             <Input placeholder="New password" type="password" />
@@ -262,14 +293,21 @@ const Header: FC<Props> = () => {
                             rules={[
                               {
                                 required: true,
-                                message: 'Please confirm your password!',
+                                message: "Please confirm your password!",
                               },
                               ({ getFieldValue }) => ({
                                 validator(_, value) {
-                                  if (!value || getFieldValue('newPassword') === value) {
+                                  if (
+                                    !value ||
+                                    getFieldValue("newPassword") === value
+                                  ) {
                                     return Promise.resolve();
                                   }
-                                  return Promise.reject(new Error('The two passwords that you entered do not match!'));
+                                  return Promise.reject(
+                                    new Error(
+                                      "The two passwords that you entered do not match!"
+                                    )
+                                  );
                                 },
                               }),
                             ]}
@@ -281,7 +319,12 @@ const Header: FC<Props> = () => {
                           </Form.Item>
                         </div>
                         <Form.Item>
-                          <Button key="submit" type="primary" style={{float: 'right'}} htmlType="submit">
+                          <Button
+                            key="submit"
+                            type="primary"
+                            style={{ float: "right", marginTop: "10px" }}
+                            htmlType="submit"
+                          >
                             Submit
                           </Button>
                         </Form.Item>
