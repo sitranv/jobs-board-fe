@@ -11,7 +11,7 @@ interface Props {}
 
 const numberOfCard = 10;
 
-const EZHire: FC<Props> = () => {
+const FastApply: FC<Props> = () => {
   const dispatch = useDispatch();
 
   const [minValue, setMinValue] = useState(0);
@@ -120,4 +120,4 @@ const EZHire: FC<Props> = () => {
   );
 };
 
-export default EZHire;
+export default FastApply;

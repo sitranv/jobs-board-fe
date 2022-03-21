@@ -1,17 +1,17 @@
 import React, { } from 'react';
 import Footer from '../../components/footer/footer.component';
 import Header from '../../components/header/header.component';
-import EZHireComponent from '../../components/ez-hire/ez-hire.component';
+import FastApplyComponent from '../../components/fast-apply/fast-apply.component';
 
-const EZHire = () => {
+const FastApply = () => {
    
     return (
         <>
           <Header/>
-            <EZHireComponent/>
+            <FastApplyComponent/>
           <Footer/>
         </>
     );
 }
 
-export default EZHire;
+export default FastApply;

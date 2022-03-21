@@ -9,7 +9,7 @@ import HomePage from "./pages/home/home.page";
 import JobDetailPage from "./pages/job-detail/job-detail.page";
 import JobList from "./pages/job-list/job-list.page";
 import NotFound from "./pages/not-found/not-found.page";
-import EZHire from "./pages/ez-hire/ez-hire.page";
+import FastApply from "./pages/fast-apply/fast-apply.page";
 import PostJob from "./pages/post-job/post-job.page";
 import CreateCompany from "./pages/employer/create-company/create-company.page";
 import UserProfilePage from "./pages/profile/profile.page";
@@ -51,7 +51,7 @@ const App: React.FC = () => {
           {/* <Route path="/job-list?search=:name" exact component={JobList} /> */}
           <Route path="/job-list" exact component={JobList} />
           <Route path="/job-detail/:name/:id" exact component={JobDetailPage} />
-          <Route path="/fast-apply" component={EZHire} />
+          <Route path="/fast-apply" component={FastApply} />
           <Route path="/post-job" component={PostJob} />
           <Route path="/create-company" component={CreateCompany} />
           <Route path="/user/profile" component={UserProfilePage} />
